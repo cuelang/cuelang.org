@@ -1,83 +1,110 @@
 +++
-title = "Goldydocs"
-linkTitle = "Goldydocs"
-
+title = "CUE"
+linkTitle = "CUE"
 +++
 
-{{< blocks/cover title="Welcome to Goldydocs: A Docsy Example Project!" image_anchor="top" height="full" color="orange" >}}
-<div class="mx-auto">
-	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
-		Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-	</a>
-	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/google/docsy-example">
-		Download <i class="fab fa-github ml-2 "></i>
-	</a>
-	<p class="lead mt-5">Porridge temperature assessment - in the cloud!</p>
-	<div class="mx-auto mt-5">
-		{{< blocks/link-down color="info" >}}
+{{< blocks/cover title="" image_anchor="top" height="min" color="light"  >}}
+<div class="col-lg-6">
+	<h3>
+	<img alt="CUE" width="130" src="images/cue.svg" />
+	Configure Unify Execute
+	</h3>
+	<p class="display-2 mt-3 mb-0">
+	Validate, define, and use dynamic and text-based data</p>
+	<div class="pt-3 mt-3 lead text-center">
+		<div class="mx-auto">
+			<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
+				Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+			</a>
+			<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/cuelang/cue/releases">
+				Download <i class="fab fa-github ml-2 "></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="col-lg-6 mt-5 mt-lg-3 d-sm-block" style="display: none">
+	<asciinema-player
+	loop autoplay speed=2 font-size="12px" rows=17 cols=80
+	src="cue.cast"></asciinema-player>
+</div>
+<div class="col-12 pt-3">
+	<div class="pt-3 lead text-center">
+		<div class="mx-auto">
+			<p class="lead mt-3">Be in control of your data</p>
+			<div class="mx-auto mt-3">
+				{{< blocks/link-down color="light-secondary" >}}
+			</div>
+		</div>
 	</div>
 </div>
 {{< /blocks/cover >}}
 
 
-{{% blocks/lead color="primary" %}}
-Goldydocs provides a single web UI providing visibility into porridge temperature, chair size, and bed softness metrics! You can even find out who's been eating **your** porridge.
+{{% blocks/lead color="secondary" %}}
+**CUE** is an open source language, with a rich set APIs and
+tooling, for defining, generating, and validating all kinds of data:
+configuration, APIs, database schemas, code, ... you name it.
 
-(Sadly, Goldydocs isn't a real project, but you can use this site as an example to create your own real websites with [Docsy](http://docsy.dev))
+
+
 {{% /blocks/lead %}}
 
+
 {{< blocks/section color="dark" >}}
-{{% blocks/feature icon="fa-lightbulb" title="New chair metrics!" %}}
-The Goldydocs UI now shows chair size metrics by default.
 
-Please follow this space for updates!
+{{% blocks/feature icon="fa-check-circle" title="Data Validation" url="./docs/usecases/validation/" %}}
+Validate text-based data files or programmatic data such
+as incoming RPCs or database documents.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-list-alt" title="Configuration" url="./docs/usecases/configuration/" %}}
+Just add validation to existing data (CUE, YAML, JSON),
+reduce boilerplate in large-scale configurations, or both.
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="https://github.com/google/docsy-example" %}}
-We do a [Pull Request](https://github.com/gohugoio/hugo/pulls) contributions workflow on **GitHub**. New users are always welcome!
+<!--
+life-ring map newspaper pause-circle play-circle stop-circle user clipboard comments (two bubbles) file-alt file-code handshake map -->
+{{% blocks/feature icon="fa-handshake" title="Data Definition"  url="./docs/usecases/datadef/" %}}
+Define schema to communicate an API or standard.
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/docsydocs" %}}
-For announcement of latest features etc.
+
+{{% blocks/feature icon="fa-file-code" title="Generate Code and Schema" url="./docs/usecases/generate/" %}}
+Keep validation code in sync across code bases,
+Protobuf definitions, and OpenAPI definitions.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fas fa-wrench" title="Scripting" url="./docs/usecases/scripting/" %}}
+Automate the use of your data without writing yet another tool.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-question-circle" title="Querying" url="./docs/usecases/query/" %}}
+Find the locations of instances of CUE types and values in data.<br>
+Coming soon.
 {{% /blocks/feature %}}
 
 
 {{< /blocks/section >}}
 
 
-{{< blocks/section >}}
+{{< blocks/section color="white" >}}
+<!--
 <div class="col">
-<h1 class="text-center">This is the second Section</h1>
+<h2 class="text-left">Projects using CUE</h1>
+<img alt="k8s" height="90" src="images/istio.png"/>
+</div>
+-->
+<div class="col">
+<h2 class="text-left">Featured Integrations</h1>
+{{<imglink ref="json" height="70" src="json.svg" >}}&emsp;&emsp;
+{{<imglink ref="yaml" height="50" src="yaml.png" >}}&emsp;&emsp;
+{{<imglink ref="go" height="160" src="go.png" >}}
+{{<imglink ref="protobuf" height="200" src="protobuf_nano.png" >}}
+{{<imglink ref="openapi" height="70" src="openapi-wide.svg" >}}&emsp;&emsp;&emsp;
+{{<imglink ref="k8s" height="80" src="k8s.svg" >}}&emsp;&emsp;
 </div>
 
 {{< /blocks/section >}}
 
-
-
-{{< blocks/section >}}
-{{% blocks/feature icon="fab fa-app-store-ios" title="Download **from AppStore**" %}}
-Get the Goldydocs app!
-{{% /blocks/feature %}}
-
-
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="https://github.com/gohugoio/hugo" %}}
-We do a [Pull Request](https://github.com/gohugoio/hugo/pulls) contributions workflow on **GitHub**. New users are always welcome!
-{{% /blocks/feature %}}
-
-
-{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/GoHugoIO" %}}
-For announcement of latest features etc.
-{{% /blocks/feature %}}
-
-
-{{< /blocks/section >}}
-
-{{< blocks/section >}}
-
-<div class="col-12">
-<h1 class="text-center">This is another Section</h1>
-</div>
-
-{{< /blocks/section >}}
