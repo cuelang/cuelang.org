@@ -36,7 +36,7 @@ pygmentsStyle = "tango"
     url = "/docs/"
 [[menu.main]]
     name = "GitHub"
-    weight = -99
+    weight = 100
     url = "https://github.com/cuelang/cue"
 
 # Configure how URLs look like per section.
@@ -83,7 +83,7 @@ privacy_policy = "https://policies.google.com/privacy"
 version_menu = "Releases"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/cuelang/website"
+github_repo = "https://github.com/cuelang/cue"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 github_project_repo = "https://github.com/cuelang/cue"
 
@@ -117,13 +117,21 @@ navbar_logo = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-	name = "GitHub"
-	url = "https://github.com/cuelang/cue"
-	icon = "fab fa-github"
-        desc = "Development takes place here!"
-[[params.links.user]]
 	name = "Slack"
 	url = "https://cuelang.slack.com"
 	icon = "fab fa-slack"
         desc = "Chat with other cue enthusiast"
+
+[[params.links.developer]]
+	name = "GitHub"
+	url = "https://github.com/cuelang/cue"
+	icon = "fab fa-github"
+        desc = "Development takes place here!"
+
+[[params.links.developer]]
+	name = "Gerrit"
+	url = "https://cue.googlesource.com/cue"
+	icon = "fab fa-git"
+        desc = "The source-of-truth repo!"
+
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
