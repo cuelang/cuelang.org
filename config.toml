@@ -27,6 +27,10 @@ pygmentsUseClassic = false
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
 
+# we use Netlify server-side redirects instead of generated aliases
+disableAliases = true
+
+
  # First one is picked as the Twitter card image if not set on page.
  #images = ["images/project-illustration.png"]
 
@@ -55,6 +59,23 @@ latexDashes = true
 resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
+
+[outputs]
+  home = ["HTML", "RSS", "REDIR"]
+  section = ["HTML"]
+
+[mediaTypes]
+    [mediaTypes."text/netlify"]
+        delimiter = ""
+
+[outputFormats]
+    [outputFormats.RSS]
+        baseName = "feed"
+    [outputFormats.REDIR]
+        mediatype = "text/netlify"
+        baseName = "_redirects"
+        isPlainText = true
+        notAlternative = true
 
 # [services]
 # [services.googleAnalytics]
