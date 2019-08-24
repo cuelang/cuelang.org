@@ -9,3 +9,10 @@
 
 # Redirect default Netlify subdomain to primary domain
 https://cuelang.netlify.com/* https://cuelang.org/:splat 301!
+
+# Netlify redirects. See https://www.netlify.com/docs/redirects/
+{{  range $p := .Site.Pages -}}
+{{ range .Aliases }}
+{{  . | printf "%-35s" }}	{{ $p.RelPermalink -}}
+{{ end -}}
+{{- end -}}
