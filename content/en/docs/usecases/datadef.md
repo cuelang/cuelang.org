@@ -1,5 +1,5 @@
 +++
-title = "Data Definition"
+title = "Schema Definition"
 weight = 30
 description = "Defining schema to communicate an API or standard."
 +++
@@ -21,6 +21,79 @@ This limits these standards in various ways.
 <!-- There is no or very limited possibility for boilerplate removal. -->
 
 ## Core issues addressed by CUE
+
+### Validating backwards compatibility
+
+CUE's model makes it easy to verify newer versions of schema are backwards
+compatible with older.
+
+Consider the following versions of the same API:
+```
+// Release notes:
+// - You can now specify your age and your hobby!
+V1 :: {
+    age:   >=0 & <=100
+    hobby: string
+}
+// Release notes:
+// - People get to be older than 100, so we relaxed it.
+// - It seems not many people have a hobby, so we made it optional.
+V2 :: {
+    age:    >=0 & <=150 // people get older now
+    hobby?: string      // some people don't have a hobby
+}
+// Release notes:
+// - Actually no one seems to have a hobby nowadays anymore, so we dropped the field.
+V3 :: {
+    age: >=0 & <=150
+}
+```
+
+The `::` makes it a definition, which means it is not part of data model
+(the fields are not output to JSON, for instance).
+Defintions assume the definition of closed structs, which means a user may
+only use fields that are explicitly defined.
+
+In CUE, an API is backwards compatible if it subsumes the older one, or
+if the old one is an instance of the new one.
+
+This can be computed using the API:
+
+```go
+inst, err := r.Compile("apis", /* text of the above API */)
+if err != nil {
+    // handle error
+}
+v1, err1 := inst.LookupField("V1")
+v2, err2 := inst.LookupField("V2")
+v3, err3 := inst.LookupField("V3")
+if err1 != nil || err2 != nil || err3 != nil {
+	 // handle errors
+}
+
+// Check if V2 is backwards compatible with V1
+fmt.Println(v2.Value.Subsumes(v1.Value))) // true
+
+// Check if V3 is backwards compatible with V2
+fmt.Println(v3.Value.Subsumes(v2.Value))) // false
+```
+
+It is as simple as that.
+This is the kind of thing that is made possible
+by ordering all values in a lattice, like CUE does.
+For CUE, checking whether one API is an instance of another is like checking
+whether 3 is less than 4.
+
+Note that `V2` strictly relaxed the API relative to `V1`.
+It allowed specifying a wider age range and made the `hobby` field optional.
+In `V3` the `hobby` field is explicitly disallowed.
+This is not backwards compatibly as it breaks previous field that did
+contain a `hobby` field.
+
+The current API only reports a yay or nay.
+Plans are to give a full actionable reports.
+Feedback welcome!
+
 
 ### Combining constraints from different sources
 
