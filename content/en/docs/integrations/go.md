@@ -17,7 +17,7 @@ The CUE APIs in the main repo are organized as follows:
 - [**cue**](https://godoc.org/cuelang.org/go/cue):
   core APIs related to parsing, formatting, loading and running CUE programs.
   These packages are used by all other packages, including the command line tool.
-- [**doc**](https://godoc.org/cuelang.org/go/doc):
+- [**doc**](https://github.com/cuelang/cue/tree/master/doc):
   [CUE documentation](/docs/references),
   including tutorials and the reference manual.
 - [**encoding**](https://godoc.org/cuelang.org/go/encoding):

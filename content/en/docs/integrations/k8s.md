@@ -43,4 +43,4 @@ The `cuelang.org/go/encoding/openapi` package outputs it in this form
 if expansion of references is requested.
 
 This topic has been covered in more detail in the
-[OpenAPI and CRDs](./openapi.md) section.
+[OpenAPI and CRDs](/docs/integrations/openapi) section.

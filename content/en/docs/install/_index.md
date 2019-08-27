@@ -22,9 +22,7 @@ can be downloaded from
 In addition, CUE can be installed with using brew on MacOS and Linux:
 
 ```
-brew tap cuelang/homebrew-tap
-
-brew install cue
+brew install cuelang/tap/cue
 ```
 
 
