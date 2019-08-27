@@ -6,7 +6,7 @@ description = "How CUE integrates with OpenOPI, an API description format for RE
 
 OpenAPI is a standard for the description of REST APIs.
 Describing value schema is one aspect of this.
-In the [Data Definition](/docs/comparison/datadef) section we already
+In the [Schema Definition](/docs/usecases/datadef) section we already
 talked about the relationship between CUE and OpenAPI.
 
 One aspect of OpenAPI is to define data schema.
@@ -25,8 +25,10 @@ to generate OpenAPI build on this API.
 
 Generating an OpenAPI definition can be as simple as
 {{< highlight go >}}
+import "cuelang.org/go/encoding/openapi"
+
 func genOpenAPI(inst *cue.Instance) (b []byte, error) {
-    b, err := Gen(inst, nil)
+    b, err := openapi.Gen(inst, nil)
     if err != nil {
         return nil, err
     }
@@ -38,7 +40,8 @@ func genOpenAPI(inst *cue.Instance) (b []byte, error) {
 
 {{< /highlight >}}
 
-The package provides options to make a definition self-contained,
+The [cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/openapi)
+package provides options to make a definition self-contained,
 expand references, filtering constraints, and so on.
 
 If expanding references is selected it will ensure the output is
