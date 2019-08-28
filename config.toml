@@ -106,7 +106,7 @@ privacy_policy = "https://policies.google.com/privacy"
 version_menu = "Releases"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/cuelang/cue"
+github_repo = "https://github.com/cuelang/cuelang.org"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 github_project_repo = "https://github.com/cuelang/cue"
 
@@ -141,7 +141,7 @@ navbar_logo = false
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
 	name = "Slack"
-	url = "https://join.slack.com/t/cuelang/shared_invite/enQtNjk1NzU1MzMwMjI2LWQ0ZDA2OTRjYTQ0MGUyZDBiYWIzZjVhZGI1YWVlNTVmMWU3MTFhY2MxZmRmMjBiMTA5MGQ1YzUyMmMzN2IxYzc"
+	url = "https://join.slack.com/t/cuelang/shared_invite/enQtNzQwODc3NzYzNTA0LTAxNWQwZGU2YWFiOWFiOWQ4MjVjNGQ2ZTNlMmIxODc4MDVjMDg5YmIyOTMyMjQ2MTkzMTU5ZjA1OGE0OGE1NmE"
 	icon = "fab fa-slack"
         desc = "Chat with other CUE enthusiast"
 
