@@ -114,7 +114,7 @@ github_project_repo = "https://github.com/cuelang/cue"
 # github_subdir = ""
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-# gcs_engine_id = "011737558837375720776:fsdu1nryfng"
+gcs_engine_id = "004591905419617723008:8rmik2a7xb3"
 
 # User interface configuration
 [params.ui]
