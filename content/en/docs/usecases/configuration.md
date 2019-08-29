@@ -6,7 +6,7 @@ description = "Managing text-based files to define a desired state of a system."
 
 Arguably, validation should be the foremost task of any configuration language.
 Most configuration languages, however, focus on boilerplate removal.
-CUE is different in that it take the validation first stance.
+CUE is different in that it takes the validation first stance.
 But CUE's constraints are also effective at reducing boilerplate,
 although the approach it takes is quite different from conventional
 data templating languages.
@@ -21,7 +21,7 @@ This property enables many of the its favorable properties, as discussed below.
 
 ### Type checking
 
- For a large code bases, no one will question a requirement to
+ For large code bases, no one will question a requirement to
  have a compiled/typed language.
  Why should one not require the same kind of rigor for data?
 
@@ -86,11 +86,11 @@ are organized to come from multiple places.
 However, as CUE disallows overrides, deep layerings are naturally prevented.
 More importantly, CUE can also enhance readability.
 A defintion in one file may apply to values in many other files.
-Where one would usually have to open all these files to verify validity,
-with CUE one can see it at one glance.
+Where one would usually have to open all these files to verify validity;
+with CUE one can see it at a glance.
 
 CUE's approach has been battle-tested in computational linguistics where it
-has been used for decades to describe human languages,
+has been used for decades to describe human languages;
 effectively very large, complex and irregular configurations.
 
 
@@ -98,13 +98,13 @@ effectively very large, complex and irregular configurations.
 
 A common debate for configuration languages is whether a language should
 provide an abstraction layer for APIs.
-On the on hand, astraction layers allow for protecting the user against misuse.
-On the other hand, they need to keep up with API changes and and are
-inevitable prone to drift.
+On the one hand, abstraction layers allow for protecting the user against misuse.
+On the other hand, they need to keep up with API changes and are
+inevitably prone to drift.
 So it goes.
 
 CUE addresses both issues.
-On the one hand, it's fine-grained typing allows layering detailed constraints
+On the one hand, its fine-grained typing allows layering detailed constraints
 on top of native APIs, without the need for an abstraction layer.
 New features can be used without support of existing definitions.
 
@@ -120,7 +120,7 @@ for an example.
 A configuration language usually transforms its configurations to
 a lower-level representation, like JSON, YAML, or Protobuf so that
 it can be consumed by tools taking in these languages.
-Piping such output to the needed tools works initially,
+Piping such output to the needed tools works initially;
 but sooner or later one will get the desire to automate this,
 usually in the form of some kind of tool.
 
@@ -138,7 +138,7 @@ abstraction one needs a more open approach.
 
 CUE attempts to address this by providing an open,
 declarative scripting layer on top of the configuration layer.
-Aside from the abovementioned case, it is designed to address various
+Aside from the above-mentioned case, it is designed to address various
 other issues:
 
 - inject environmental data into configuration, something not allowed
@@ -150,7 +150,7 @@ Again, the ability to deterministically merge data from different sources
 make this a shoo-in task for CUE.
 
 
-## Comparissons
+## Comparisons
 
 ### Inheritance-based configuration languages
 
@@ -173,7 +173,7 @@ Although CUE does not have inheritance in the override sense, it does have
 the notion of one value being an instance of another.
 In fact, this is a core principle.
 
-Let's use a real-world example to make the distinction clear.
+Let's use a real-world example to make this distinction clear:
 In the override model of inheritance, one can take an existing template,
 say a dog, and modify it to become a cat.
 Trim the ears, dry of the nose, and what have you.
@@ -188,14 +188,14 @@ to inheritance) this makes total sense.
 Although one can create instances of values (remember, types are values),
 one can not alter any of the values of a parent.
 A template acts as a type.
-Just as in statically typed languages one cannot assign an integer to
+Just as in statically typed languages where one cannot assign an integer to
 a string, one cannot violate the properties of a type in CUE.
 
 These restrictions reduce flexibility, but also enhance clarity.
 To ensure that a configuration holds a certain property, just declare it
 in any file included the project to make it so.
 There is no need to look at other files.
-As we saw, the imposed restrictions can also improve, rather than hurt,
+As we saw; the imposed restrictions can also improve, rather than hurt,
 the ability to remove boilerplate compared to inheritance-based languages.
 
 The complexity of inheritance-based models also hampers automation.
@@ -226,12 +226,12 @@ CUE's focus is data validation whereas Jsonnet focusses on data templating
 Jsonnet was not designed with validation in mind.
 
 Jsonnet and GCL can be quite powerful at reducing boilerplate.
-The goal of CUE is not to be better at boilerplate remover than Jsonnet or GCL.
+The goal of CUE is not to be better at boilerplate removal than Jsonnet or GCL.
 CUE was designed to be an answer to two major shortcomings of these approaches:
 complexity and lack of typing.
 Jsonnet reduces some of the complexities of GCL, but largely falls into the
 same category.
-For CUE the tradoff was to add typing and reduce complexity
+For CUE, the tradeoff was to add typing and reduce complexity
 (for humans and machines), at the expense of giving up flexibility.
 
 
@@ -251,11 +251,11 @@ there is no construct given in return that one might need for larger scale
 configuration management.
 This means the use of HCL may hit a ceiling for medium to larger setups.
 
-So what CUE has to offer to users of HCL is typing, better growth prospects
+So what CUE has to offer to users of HCL is: typing, better growth prospects
 to larger scale operations, and eliminating the peculiarities of file overlays.
 
 CUE does borrow one construct from HCL: the folding of single-field objects
-onto a single line was directly inspired by HCL's very similar appraoch.
+onto a single line was directly inspired by HCL's very similar approach.
 
 
 <!--
