@@ -76,7 +76,7 @@ This is often in the form of inheritance.
 
 For small-scale projects,
 using inhertiance can be too complex, and the simplicity of
-spelling everyting out is often a superior approach.
+spelling everything out is often a superior approach.
 For large-scale projects, however, using inheritance often leads to deep
 layerings of modifications, making it very hard to see where values come from.
 In the end, it is again questionable whether the added complexity is worth it.
