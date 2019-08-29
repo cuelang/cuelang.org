@@ -231,7 +231,7 @@ CUE was designed to be an answer to two major shortcomings of these approaches:
 complexity and lack of typing.
 Jsonnet reduces some of the complexities of GCL, but largely falls into the
 same category.
-For CUE, the tradoff was to add typing and reduce complexity
+For CUE, the tradeoff was to add typing and reduce complexity
 (for humans and machines), at the expense of giving up flexibility.
 
 
