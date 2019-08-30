@@ -125,7 +125,7 @@ This is called the greatest lower bound, or meet.
 Now lets imagine we could define a lattice, for say,
 all configurations, schema and data.
 In that case, we could always unambiguously merge two such configurations
-indepdent of order.
+independent of order.
 This is exactly what CUE does!
 
 
