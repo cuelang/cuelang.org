@@ -1,6 +1,4 @@
-
-# baseURL depends on enviorment.
-# baseURL = "https://cuelang.org"
+baseURL = "https://cuelang.org"
 title = "CUE"
 
 enableRobotsTXT = true

@@ -1,5 +1,8 @@
 [build]
 publish = "public"
+command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
+
+[context.deploy-preview]
 command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo -b $DEPLOY_URL"
 
 [context.deploy-preview.environment]
