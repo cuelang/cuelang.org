@@ -134,7 +134,7 @@ LanguageTag (mismatched types bool and string):
 
 The builtin `encoding/yaml.Marshal` generates JSON from within CUE.
 
-{{< blocks/section color="white" >}}
+{{< blocks/sidebyside >}}
 <div class="col">
 {{< highlight none >}}
 import "encoding/yaml"
@@ -158,12 +158,12 @@ configMap data "point.yaml":
 }
 {{< /highlight >}}
 </div>
-{{< /blocks/section >}}
+{{< /blocks/sidebyside >}}
 
 ### Parse
 
-The reverse is also possible
-{{< blocks/section color="white" >}}
+The converse is also possible
+{{< blocks/sidebyside >}}
 <div class="col">
 {{< highlight none >}}
 import "encoding/yaml"
@@ -187,4 +187,4 @@ point: yaml.Unmarshal(data)
 }
 {{< /highlight >}}
 </div>
-{{< /blocks/section >}}
+{{< /blocks/sidebyside >}}

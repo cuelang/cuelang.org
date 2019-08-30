@@ -1,0 +1,762 @@
++++
+title = "The Logic of CUE"
+weight = 1
+description = "Learn about CUE's theoretical basis and what makes it different."
+mermaid = true
++++
+This page explains the core concept on which pretty much everthing that is CUE
+depends.
+It helps to get a top-down understanding and frame of reference,
+but is not strictly necessary to learn the language.
+
+<!--
+## Types ~~and~~ are values
+-->
+## Types are values
+
+There are two core aspects of CUE that make it different from
+the usual programming or configuration languages:
+
+- Values _are_ types
+- Values (and thus types) are ordered into a lattice
+
+These properties are relevant almost to everything that makes CUE what it is.
+It simplifies the language, as many concepts that are distinct in other
+languages fold together.
+The resulting order independence
+simplifies reasoning about values for both humans and machines.
+
+It also forces formal rigor on the language, such a defining
+exactly what it means to be be optional, a default value, or null.
+Making sure all values fit in a value lattice leaves no wiggle room.
+
+Finally, the combination of all this allows for many unique features,
+for instance:
+
+- a single language for specifying data, schema, validation
+  and policy constraints,
+- meta reasoning, such as  determining whether,
+  a new schema version is backwards compatible,
+- automated rewriting, such as done by `cue trim`,
+- creating multi-source constraint pipelines, retaining documentation
+  across normalization,
+
+and so on.
+
+
+## The Value Lattice
+
+Every value in CUE, including what would in most programming languages
+be considered types, are partially ordered in a single hierarchy
+(a lattice, to be precise).
+Even entire configurations and schema are placed in this hierarchy.
+
+
+### What is a lattice?
+
+{{< alert >}}
+This section is useful to understand what a lattice is,
+but is not strictly needed to grasp the following sections,
+nor the specifics of CUE itself. Skip at will.
+{{< /alert >}}
+
+A lattice is a partially ordered set, in which every two elements
+have a unique least upper bound (join) and greatest lower bound (meet).
+By definition this means there is always a single root (top) and a single
+leaf (bottom).
+Let's consider what this means by example.
+This diagrams below shows a lattice of all values of respectively a
+2- and 3- element set, ordered by the subset relation.
+
+{{< blocks/sidebyside >}}
+<div class="col-lg-1">
+</div>
+
+<div class="col-lg-3">
+<div class="mermaid">
+graph TD
+    xy("{x, y}")
+    xy --> x("{x}")
+    xy --> y("{y}")
+    x --> B("{}")
+    y --> B
+</div>
+</div>
+
+<div class="col-lg-1">
+</div>
+
+<div class="col-lg-5">
+<div class="mermaid">
+graph TD
+    linkStyle default interpolate basis
+    xyz("{x, y, z}")
+    xyz --> xy("{x, y}")
+    xyz --> xz("{x, z}")
+    xyz --> yz("{y, z}")
+    xy --> x
+    xy --> y
+    xz --> x
+    xz --> z
+    yz --> y
+    yz --> z
+    x("{x}") --> B
+    y("{y}") --> B
+    z("{z}") --> B
+    B("{}")
+</div>
+Squint harder if you can't recognize the cube.
+</div>
+{{< /blocks/sidebyside >}}
+<p>
+<p>
+If an element B is a subset of element A, there is a path from A to B.
+In more general terms, we then say that A _subsumes_ B, or that
+B is an _instance of_ A.
+In our examples, `{x}` is an instance of `{x, y}`,
+because we defined our lattice to use the subset relation.
+But we can use any relation we want as long as the properties of a lattice
+are upheld.
+
+An important aspect of a lattice is that for every two elements,
+there is a _unique_ instance of both elements that subsumes all other
+elements that are an instance of both elements.
+This is called the greatest lower bound, or meet.
+Now lets imagine we could define a lattice, for say,
+all configurations, schema and data.
+In that case, we could always unambiguously merge two such configurations
+indepdent of order.
+This is exactly what CUE does!
+
+
+### CUE's hierarchy
+
+In this section we will introduce CUE's value hierarchy.
+The goal here is to get the big picture, and will only present the details
+when it helps for this purpose.
+
+#### Booleans
+
+Let's start simple, with booleans.
+
+{{< mermaid >}}
+graph TD
+    B(bool)
+    B --> T(true)
+    B --> F(false)
+    T --> E
+    F --> E
+    E("⊥ (bottom)")
+{{< /mermaid >}}
+
+This diagram shows that CUE interprets both `true` and `false` as
+an instance of `bool`.
+No surprises there.
+What is less ordinary is that, to CUE, `bool` is just as much value
+as `true` and `false`.
+For instance, when we say that a value is both a `bool` and `true`,
+or in lattice terms,
+if we find the greatest lower bound of these values,
+the answer is `true`.
+Again maybe no suprise, except that in CUE this is actually
+an operation, denoted `bool & true`.
+
+This also explains the odd fourth element in the graph labeled bottom.
+Bottom, in this example, is the result of computing `true & false`.
+A value cannot be both true and false, so this an error.
+Bottom is analogous to error in many other languages.
+Bottom is an instance of every value and type, in fact.
+More on errors later.
+
+One more detail:
+besides the meet operator (`&`), CUE also has a join operator (`|`),
+which computes the least upper bound.
+The result of `true | false` is indeed `bool` in CUE.
+
+
+#### Numbers
+
+With numbers things get a bit more interesting.
+CUE has gone through various iterations of the number type system
+to find the mix of being practical and strict, while still being simple.
+CUE recognizes `number`, and the instances`int` and `float` as classes
+of numbers.
+For now it suffices to only consider `number` and `int`, the latter being
+an instance of the former.
+
+Let's consider a lattice with some example numeric values.
+We cannot show a complete lattice, of course, as the number of elements is
+infinite (it actually is, CUE has arbitrary precision arithmetic).
+
+{{< mermaid >}}
+graph TD
+    N(number)
+    N --> I("int")
+    N --> GEH(">=0.5")
+    N --> LTC("<10")
+    I --> Z("0")
+    I --> One("1")
+    IFI("1.1")
+    N --> CCF("20.0")
+    GEH --> One
+    GEH --> IFI
+    LTC --> One
+    LTC --> IFI
+    Z --> E
+    One --> E
+    IFI --> E
+    CCF --> E
+    E("⊥ (bottom)")
+{{< /mermaid >}}
+
+Here we see what is tradionally a type class (number and int)
+and some concrete instances, that is, specific numbers.
+They are ordered as expected: `0` and `1` are
+integral numbers, whereas `20.0` (by definition) and `1.1` are numbers,
+but not integers.
+But we also see "constraints", a category of values that falls between
+the traditional concepts of value and type.
+
+CUE defines the constraints we see here in terms of its binary operators
+`>=` and `<`.
+It allows all binary operators that results in a boolean, except `==`,
+to be used as a constraint by leaving off the left value,
+where `op B` defines the set of all values for which `A op B` is true
+for any element `A` in that set.
+The constraint `<10` means all numbers less then `10`.
+Note that we say all numbers, even though `10` is an integer.
+This is because CUE allows implicit conversion between
+number types in comparisons.
+
+
+<!----
+{{< mermaid >}}
+graph TD
+    N(number)
+    N -- > I("int")
+    N -- > GEZ(">=0")
+    N -- > LTC("<100")
+    I -- > One("1")
+    F -- > IFI("1.1")
+    N -- > F(float)
+    GEZ -- > One
+    GEZ -- > IFI
+    LTC -- > One
+    LTC -- > IFI
+    One -- > E
+    IFI -- > E
+    E("⊥ (bottom)")
+{{< /mermaid >}}
+---->
+
+#### CUE types
+
+Let's look at all types CUE supports.
+
+{{< mermaid >}}
+graph TD
+    A("⊤ (top)")
+    A --> B(bool)
+    A --> U(null)
+    A --> D(bytes)
+    N --> I("int")
+    A --> N(number)
+    A --> T(struct)
+    A --> L(list)
+    A --> S(string)
+    D --> E
+    S --> E
+    B --> E
+    I --> E
+    U --> E
+    T --> E
+    L --> E
+    E("⊥ (bottom)")
+{{< /mermaid >}}
+
+There are actually values between top and the basic types.
+The `|` operator in CUE allows one to define "sum types" like `int | string`.
+The same operator can also be used to describe what is called "enums"
+in other languages, for instance, `1 | 2 | 3`.
+To CUE these are the same thing.
+You can also mix the two, as in `*1 | int`to define defaults (marked by `*`),
+or mix it with expressions like `*pet.species | "cat"`.
+The latter is called null coalescing in some languages.
+This is not operator overloading: it is all the same operation in CUE.
+
+<!--
+{{< mermaid >}}
+graph TD
+    A("⊤ (top)")
+    A -- > B(bytes)
+    B -- > D(data)
+    B -- > U(string)
+    D -- > E
+    U -- > E
+    E("⊥ (bottom)")
+{{< /mermaid >}}
+-->
+
+#### Structs
+
+Ordering of scalar types, like numbers and strings is fairly straightforward
+and will feel familiar to anyone that has worked with a typed programming
+language.
+But ordering structs might seem a bit unusual.
+
+Below are two examples of an ordering defined on structs.
+
+{{< blocks/sidebyside >}}
+<div class="col-lg-1">
+</div>
+<div class="col-lg-4">
+{{< mermaid title="London is a big city, which is a municipality">}}
+graph TD
+    M["<i>municipality</i><br/>name: string<br/>population: int"]
+    C["<i>big city</i><br/>name: string<br/>population: >1M"]
+    L["<i>London</i><br/>name: 'London'<br/>population: 8M"]
+    M --> C
+    C --> L
+    classDef node text-align:left
+{{< /mermaid >}}
+</div>
+
+<div class="col-lg-4">
+{{< mermaid >}}
+graph TD
+    T("⊤")
+    T --> ai["a: int"]
+    T --> bi["b: int"]
+    ai --> a1["a: 1"]
+    ai --> aibi
+    aibi["a: int<br/>b: int"]
+    bi --> aibi
+    a1b1["a: 1<br/>b: 1"]
+    aibi --> a1b1
+    a1b1 --> E
+    a1 --> E
+    bi --> b1["b: 1"]
+    b1 --> E
+    E("⊥")
+{{< /mermaid >}}
+</div>
+{{< /blocks/sidebyside >}}
+
+Loosely speaking, a struct is an instance of another if it has at least
+all the fields defined by the parent and if its constraints on these fields
+are at least as strict as those defined by its parent.
+
+The instance relation for structs has an analogy in
+software engineering: backwards compatibility.
+For a newer version of an API to be backwards compatible with the previous
+version it must subsume it.
+In other words, the old version must be an instance of the new one.
+Or yet another way to say it: a new version may not forbid what was allowed
+in the older version.
+
+With optional fields it gets a bit more subtle, but basically,
+an instance may change an optional field to required, but not remove it.
+The backwards compatibility metaphore applies here as well.
+
+{{< blocks/sidebyside >}}
+<div class="col-lg-1">
+</div>
+
+<div class="col-lg-4">
+<div class="mermaid">
+graph TD
+    ao["a?: int"]
+    ao --> ar["a: int"]
+    ao --> aolt["a?: int & <10"]
+    aolt --> arlt["a: int & <10"]
+    ar --> arlt
+</div>
+<i>Required is more specific than optional</i>
+</div>
+
+<div class="col-lg-5">
+<div class="mermaid">
+graph TD
+    ao0["a?: 0"]
+    ao1["a?: 1"]
+    aob["a?: ⊥"]
+    ao0 --> aob
+    ao1 --> aob
+    ar0["a: 0"]
+    ar1["a: 1"]
+    aob --> E
+    ar0 --> E
+    ar1 --> E
+    E("⊥")
+</div>
+<i>Conflicting values for optional fields result in
+disallowing that field,
+conflicting required fields result in a faulty struct</i>
+</div>
+{{< /blocks/sidebyside >}}
+<p>
+<p>
+An important thing to note is that, unlike for required fields,
+conflicting values for an optional fields do not cause a struct to be faulty.
+This definition was a result from fitting the notion of closed structs into
+the value lattice.
+But it can also be explained with some logic.
+A common practice in interpretations of logic is to allow
+infering $\neg P$ from $P \rightarrow \perp$.
+If for an optional field we find the value $\perp$, we can infer
+"not that field", or, drop it.
+If we derive $\perp$ for a required field, we have a problem,
+as a required field cannot not be.
+
+
+{{< alert color="info" title="The answer to life, the universe and everything." >}}
+CUE has its own equivalent of 42, the answer to life, the universe and
+everything, albeit more than 2 characters.
+Graph unification of typed feature structures,
+CUE's theoretical foundation, can be described at many levels of abstraction.
+CUE's language specification, and most literature,
+take a less abstract and more comprehensible approach,
+but in its most abstract form, it can loosely be defined as follows:
+
+<div style="margin-left: 40px">
+Subsumption: given a set $\mathcal{F}$ of all TFSs (graphs, CUE values, basically),
+and $F$ and $F'$ in $\mathcal{F}$,
+$F$ subsumes $F'$, denoted $F \sqsubseteq F'$, if and only if:
+$$\begin{eqnarray}
+    & & \pi \equiv_\mathcal{F} \pi' \text{ implies } \pi \equiv_\mathcal{F'} \pi' \\
+    & & \mathcal{P}_\mathcal{F} = t  \text{ implies }
+    \mathcal{P}_\mathcal{F'} = t' \text{ and } t' \sqsubseteq t \\
+\end{eqnarray}$$
+where $\pi \equiv_\mathcal{F} \pi'$ means that
+$F\in\mathcal{F}$ contains a path equivalence or reentrancy between
+the paths $\pi$ and $\pi'$
+(two references starting from the root of a config end up at the same node)
+and $\mathcal{P}_\mathcal{F} = \tau$ means the type
+at that path (itself a subgraph in $\mathcal{F}$).
+</div>
+<p>
+<div style="margin-left: 40px">
+Unification $F \sqcap F'$ of two TFSs $F$ and $F'$ is then the greatest lower
+bound of $F$ and $F'$ in $\mathcal{F}$ ordered by subsumption.
+</div>
+<p>
+<div>
+This highly abstract definition determines almost everything about CUE.
+For instance, lazy binding was not a design decision,
+but a direct consequence of following this definition.
+It determines the possible evaluation strategies and
+what cycles mean, if allowed.
+Optional fields, definitions and default values were added to the language
+by choice,
+but what they can mean strictly follows from this definition.
+</div>
+{{< /alert >}}
+
+
+#### Null
+
+We conveniently left out the discussion of `null` before.
+Not only does it make an uninspiring example to describe a lattice,
+it is also actually surprisingly complicated.
+This is partly due to lack of guidance from the JSON standard regarding its
+meaning and the different interpretations it gets in practice.
+
+Typescript creates some order in the chaos by introducing the concepts
+`undefined` and `void` in addition to `null`.
+It is a necessary evil to give `null` some meaning
+that is compatible with common practices,
+within the context of its type system.
+
+CUE got lucky.
+CUE's interpretation of `null`, optionality, and related concepts
+is actually inspired by TypeScript.
+But because types are values in CUE, TypeScript's concepts of
+`undefined`, `void` and `null` and optional fields, roughly collapse onto CUE's
+`null` and bottom (`_|_`), and optional fields,
+resulting in a somewhat simpler model.
+
+
+### Default values
+
+Default values are CUE's equivalant of inheritance,
+specifically the kind that allows instances to override any value in its parent.
+Without it, very little boilerplate removal would be possible.
+That is fine if CUE is used just for validation,
+but as it aimes to be useful across the entire configuration continuum,
+it seemed too restrictive to not have such a construct.
+
+#### Relation to inheritance
+
+In CUE, if one sees a concrete value for a field,
+it is guaranteed that this will be the final result.
+If a value is not concrete (like `string`), it is clear the search
+for a concrete value is not over.
+In other words, an instance may never violate the constraints of its parent.
+This property makes it very hard to inadvertendly make false conclusions in CUE.
+Default values do not change this property; they syntactically appear as
+non-concrete values.
+CUE also bails out and requires explicit values if two conflicting defaults
+are specified for the same field, again limiting the search space.
+
+With approach that allows overrides, whether it be the complex inheritance
+used in languages like GCL or Jsonnet
+or the much simpler file-based approach as used in HCL or Kustomize,
+finding a declaration for a concrete field value does not guarantee
+a final answer.
+When one needs to change a value of such a field,
+it can be time consuming and,
+especially in a pressured situation,
+very tempting to skip following complicated inheritance chains,
+double check a configuration file specifying overlay order,
+or look for a file that is lexically sorted after the one under consideration.
+
+So there is a clear benefit to having fully expanded configurations
+over such override methods.
+CUE simulates that benefit by guaranteeing that any observed field value
+holds for the final result.
+If a users makes a false assumption that a concrete value is the last in a chain,
+CUE will catch an erroneous change to that value and report the conflicting
+locations.
+
+But there is more.
+In CUE one can apply a constraint to a group of values at once,
+even across files.
+Once set, there is no need to look at the individual values and files to
+know these constraints apply.
+Such information is not readily available for fully expanded configurations.
+But also with inheritance-based solutions
+that allow arbitrary overrides, templates give little information.
+
+The ability to enforce constraints top down is crucial for any
+large-scale configuration setup.
+GCL and Jsonnet address this issue with assertions.
+Assertions, however, are typically decoupled from their fields,
+making them both hard to discover and hard to reason about.
+Where CUE simplifies constraints
+(`>=3 & <=10` and `>=5 & <=20` becomes `>=5 & <=10`, `>=1 & <=1` becomes `1`),
+GCL and Jsonnet do not (it would be quite complex),
+causing an ever-growing pile of assertions.
+
+
+#### Semantics
+
+CUE defaults, which are values marked with a `*` in disjunctions,
+preserve the beneficial properties of the lattice.
+In order to do so,
+it must ensure that the order of picking defaults does not influence the outcome.
+Suppose we define two fields, each with the same default value.
+We also define that these fields are equal to each other.
+{{< highlight cue >}}
+a: int | *1
+b: int | *1
+a: b
+b: a
+{{< /highlight >}}
+This is fine.
+The obvious answer is `a: 1, b: 1`.
+
+But now suppose we change one of the default values:
+
+{{< highlight cue >}}
+a: int | *1
+b: int | *2
+a: b
+b: a
+{{< /highlight >}}
+
+What should the answer be?
+Picking either `1` or `2` as the default would result in a resolution of the
+constraints, but would also be highly undesirable, as the result would depend
+on the mood of the implementation.
+This also starts to reek like a NP-complete constraint solving problem.
+(Basic graph unification itself is pseudo linear.)
+CUE accepts none of these shenanigans.
+So the answer in this case is that there are no concrete values
+as the defaults cannot be used.
+
+The model for this is actually quite simple.
+Conceptually, CUE keeps two parallel values, one for all possible values
+and for the default, which must an instance of the former.
+Rougly speaking, for the example with the conflict,
+it simultaneously evaluates:
+
+{{< blocks/sidebyside >}}
+<div class="col">
+{{< highlight cue >}}
+// All allowed values
+a: int
+b: int
+a: b
+b: a
+{{< /highlight >}}
+</div>
+
+<div class="col">
+{{< highlight cue >}}
+// Default
+a: 1
+b: 2
+a: b
+b: a
+{{< /highlight >}}
+</div>
+{{< /blocks/sidebyside >}}
+
+Equating `a` and `b` clearly results in a conflict (`1 != 2`) and each will
+result in `_|_`, leaving the left values as the only viable answer.
+
+Now consider the two values corresponding to the original example:
+
+{{< blocks/sidebyside >}}
+<div class="col">
+{{< highlight cue >}}
+// All allowed values
+a: int
+b: int
+a: b
+b: a
+{{< /highlight >}}
+</div>
+
+<div class="col">
+{{< highlight cue >}}
+// Default
+a: 1
+b: 1
+a: b
+b: a
+{{< /highlight >}}
+</div>
+{{< /blocks/sidebyside >}}
+
+Here the defaults are not in conflict and can safely be returned.
+Note that it is not an all-or-noting game.
+The parallel values are determined on a field-by-field basis.
+So defaults can be selected, or not, independently for fields
+that do not depend on each other.
+
+
+## Reasoning and Inference
+
+The values lattice brings CUE another advantage: the ability to reason about
+values, schema, and constraints.
+We already discussed how limiting inheritance,
+whether language-based or file-based,
+makes it easier for people to reason about values.
+But it also makes it easier for machines.
+
+
+### Boilerplate removal
+
+On the one hand, CUE's severe restrictions on inheritance limits its
+ability to define hierarchies of templates to remove boilerplate.
+On the other hand, however, it creates new mechanisms for removing boilerplate.
+
+Suppose a node must inherit from multiple templates, or mixins.
+Because order is irrelevant in CUE,
+there is no need to specify these in a particalar order or even in one location.
+One can even say on a single line that a collection of
+fields must mix in a template.
+For instance,
+```
+jobs <JobName>: acmeMonitoring
+```
+tells CUE that _all_ jobs in `jobs` must mix in `acmeMonitoring`.
+There is no need to repeat this at every node.
+
+In CUE, though, we typically refer to `acmeMonitoring` as a constraint.
+After all, it can be used to ensure
+that all jobs in a collection implement monitoring in a certain way.
+If such a constraint also contains sensible defaults, however,
+it simultaneously validates _and_ reduces boilerplate.
+
+This ability of constraints to simultaneously
+enforce constraints and remove boilerplate
+was a key factor in the success of
+the typed feature structure systems that inspired the creation of CUE.
+
+This property is also useful in automation.
+The `cue trim` tool can automatically remove boilerplate from configurations
+using the same logic.
+
+
+### Cycles
+
+An astute reader may have noticed that there were cyclic references
+between fields in some of the examples.
+CUE's underlying model allows reasoning over cycles.
+Consider a CUE program defining two fields;
+{{< highlight cue >}}
+a: b
+b: a
+{{< /highlight >}}
+
+This can only be interpreted to mean that `a` and `b` must be equal.
+If there is no concrete value assigned to `a` or `b`,
+they remain unspecified in the same way as if each had been declared as `string`.
+
+This particular case comes in handy in Kubernetes, for instance,
+if one wants to equate a set
+of labels with a set of selectors
+(regardless of whether that is good practice).
+
+But it goes furter, consider
+```
+a: b + 1
+b: a - 1
+b: 1
+```
+When evaluating `a`, it will attempt to resolve `b` and will find
+`(a-1) & 1` after unifying the two declarations for `b`.
+It cannot recursively resolve `a`, as this would result in an
+evaluation cycle.
+However, the expression `(a-1) & 1` will only not result in an error
+if `(a-1)` results in `1`.
+So if this configuration is ever to be a valid, we can safely assume
+the answer is `1` and verify that `a-1 == 1` after resolving `a`.
+
+So CUE happily resolves this to
+```
+a: 2
+b: 1
+```
+without resorting to any fancy algebraic constraint satisfaction solvers,
+just plane ole logic.
+
+
+### File organization
+
+What applies at the language level also applies at the file level.
+Within a package, or project, there is no need for files to mutually
+import each other.
+
+Files can be split across organizational lines each with a different set
+of policies, all implemented with the same familiar constraints.
+
+
+### The sky is the limit
+
+Many other things are possible.
+Take for instance querying.
+Whereas validating data is the problem of finding data that is inconsistent with
+some constraints,
+querying is the problem of finding data that _matches_ some given constraints.
+Clearly these two concepts are related.
+
+Computing backwards compatibility (instance of),
+computing the most general schema mutually compatible with a set of others
+(greatest lower bound),
+inferring optimal templates from concrete instances (least upper bound):
+all of these fall in the realm of possibilities of CUE's model.
+
+
+## References
+
+The titel of this section refers to Bob Carpenter's
+"The Logic of Typed Feature Structures"
+(1992, Cambridge University Press, ISBN:0-521-41932-8).
+Most the inspriation for the underlying work comes from
+the Lingo and LKB project.
+One can read more about this in Ann Copestake's
+"Implementing Typed Feature Structure Grammars."
+(2002, CSLI Publications, ISBN 1-57586-261-1).

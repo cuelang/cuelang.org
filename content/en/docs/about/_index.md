@@ -49,8 +49,9 @@ The ordering of values also allows set containment analysis of entire
 configurations.
 Where most validation systems are limited to checking whether a concrete
 value matches a schema, CUE can validate whether any instance of
-one schema is also an instance of another, or compute a new schema
-that represents all instances that match two other schema.
+one schema is also an instance of another (is it backwards compatible?),
+or compute a new schema that represents all instances that match
+two other schema.
 
 
 ## History
@@ -106,8 +107,7 @@ about the city of Moscow.
 The middle columns shows a possible schema for any municipality.
 On the right one sees a mix between data and schema as is exemplary of CUE.
 
-{{< blocks/section color="white" >}}
-
+{{< blocks/sidebyside >}}
 <div class="col">
 Data
 {{< highlight go >}}
@@ -140,8 +140,7 @@ largeCapital: {
 }
 {{< /highlight >}}
 </div>
-
-{{< /blocks/section >}}
+{{< /blocks/sidebyside >}}
 
 In general, in CUE one starts with a broad definition of a type, describing
 all possible instances.
