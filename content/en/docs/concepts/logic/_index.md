@@ -7,7 +7,7 @@ mermaid = true
 This page explains the core concept on which pretty much everthing that is CUE
 depends.
 It helps to get a top-down understanding and frame of reference,
-but is not strictly necessary to learn the language.
+but is not necessary to learn the language.
 
 <!--
 ## Types ~~and~~ are values
@@ -164,7 +164,7 @@ an operation, denoted `bool & true`.
 This also explains the odd fourth element in the graph labeled bottom.
 Bottom, in this example, is the result of computing `true & false`.
 A value cannot be both true and false, so this an error.
-Bottom is analogous to error in many other languages.
+Bottom is analogous to an error in many other languages.
 Bottom is an instance of every value and type, in fact.
 More on errors later.
 
@@ -457,7 +457,7 @@ but what they can mean strictly follows from this definition.
 
 We conveniently left out the discussion of `null` before.
 Not only does it make an uninspiring example to describe a lattice,
-it is also actually surprisingly complicated.
+it is also actually surprisingly complicated to pin down what it means.
 This is partly due to lack of guidance from the JSON standard regarding its
 meaning and the different interpretations it gets in practice.
 
@@ -472,14 +472,14 @@ CUE's interpretation of `null`, optionality, and related concepts
 is actually inspired by TypeScript.
 But because types are values in CUE, TypeScript's concepts of
 `undefined`, `void` and `null` and optional fields, roughly collapse onto CUE's
-`null` and bottom (`_|_`), and optional fields,
+`null`, bottom (`_|_`), and optional fields,
 resulting in a somewhat simpler model.
 
 
 ### Default values
 
 Default values are CUE's equivalant of inheritance,
-specifically the kind that allows instances to override any value in its parent.
+specifically the kind that allows instances to override any value of its parent.
 Without it, very little boilerplate removal would be possible.
 That is fine if CUE is used just for validation,
 but as it aimes to be useful across the entire configuration continuum,
@@ -498,9 +498,9 @@ non-concrete values.
 CUE also bails out and requires explicit values if two conflicting defaults
 are specified for the same field, again limiting the search space.
 
-With approach that allows overrides, whether it be the complex inheritance
-used in languages like GCL or Jsonnet
-or the much simpler file-based approach as used in HCL or Kustomize,
+With approaches that allow overrides, whether it be the complex inheritance
+used in languages like GCL and Jsonnet
+or the much simpler file-based approaches as used in HCL and Kustomize,
 finding a declaration for a concrete field value does not guarantee
 a final answer.
 When one needs to change a value of such a field,
@@ -514,7 +514,8 @@ So there is a clear benefit to having fully expanded configurations
 over such override methods.
 CUE simulates that benefit by guaranteeing that any observed field value
 holds for the final result.
-If a users makes a false assumption that a concrete value is the last in a chain,
+If a user makes a false assumption that a concrete (default)
+value is the last in a chain,
 CUE will catch an erroneous change to that value and report the conflicting
 locations.
 
@@ -523,13 +524,14 @@ In CUE one can apply a constraint to a group of values at once,
 even across files.
 Once set, there is no need to look at the individual values and files to
 know these constraints apply.
-Such information is not readily available for fully expanded configurations.
+Such information is not readily available for
+fully expanded configurations.[$^1$](#footnotes)
 But also with inheritance-based solutions
 that allow arbitrary overrides, templates give little information.
 
 The ability to enforce constraints top down is crucial for any
 large-scale configuration setup.
-GCL and Jsonnet address this issue with assertions.
+GCL and Jsonnet address this with assertions.
 Assertions, however, are typically decoupled from their fields,
 making them both hard to discover and hard to reason about.
 Where CUE simplifies constraints
@@ -568,9 +570,9 @@ What should the answer be?
 Picking either `1` or `2` as the default would result in a resolution of the
 constraints, but would also be highly undesirable, as the result would depend
 on the mood of the implementation.
-This also starts to reek like a NP-complete constraint solving problem.
+This also starts to reek like an NP-complete constraint solving problem.
 (Basic graph unification itself is pseudo linear.)
-CUE accepts none of these shenanigans.
+CUE wants no part of these shenanigans.
 So the answer in this case is that there are no concrete values
 as the defaults cannot be used.
 
@@ -665,10 +667,10 @@ tells CUE that _all_ jobs in `jobs` must mix in `acmeMonitoring`.
 There is no need to repeat this at every node.
 
 In CUE, though, we typically refer to `acmeMonitoring` as a constraint.
-After all, it can be used to ensure
-that all jobs in a collection implement monitoring in a certain way.
+After all, applying it will guarantee
+that a job implements monitoring in a certain way.
 If such a constraint also contains sensible defaults, however,
-it simultaneously validates _and_ reduces boilerplate.
+it simultaneously validates _and_ reduces boilerplate.[$^2$](#footnotes)
 
 This ability of constraints to simultaneously
 enforce constraints and remove boilerplate
@@ -683,7 +685,9 @@ using the same logic.
 ### Cycles
 
 An astute reader may have noticed that there were cyclic references
-between fields in some of the examples.
+between fields in some of the examples,
+something that is not allowed in your typical programming or
+configuration language.
 CUE's underlying model allows reasoning over cycles.
 Consider a CUE program defining two fields;
 {{< highlight cue >}}
@@ -722,6 +726,10 @@ b: 1
 ```
 without resorting to any fancy algebraic constraint satisfaction solvers,
 just plane ole logic.
+Most cycles that do not result in inifite structures can be handled by CUE.
+In fact, it could handle most infinite structures in bounded time
+as well, but it puts limits on such cycles for
+practical reasons.[$^3$](#footnotes)
 
 
 ### File organization
@@ -755,8 +763,27 @@ all of these fall in the realm of possibilities of CUE's model.
 The titel of this section refers to Bob Carpenter's
 "The Logic of Typed Feature Structures"
 (1992, Cambridge University Press, ISBN:0-521-41932-8).
-Most the inspriation for the underlying work comes from
-the Lingo and LKB project.
+Most the inspiriation for the underlying work
+presented here comes from the Lingo and LKB project.
 One can read more about this in Ann Copestake's
 "Implementing Typed Feature Structure Grammars."
 (2002, CSLI Publications, ISBN 1-57586-261-1).
+
+## Footnotes
+
+<small>
+<ol>
+<li> Although CUE could be used to verify those properties in such
+   data-only configurations.
+
+<li> TFSs typically don't have default values, it is the structure
+   itself that is boilerplate removing, as the structure itself
+   is what is the useful value.
+   But hat is a different topic.
+   It doesn't work quite as well if one needs numeric values.
+
+<li> Dection of structural cycles (an occurs check)
+   is not yet implemented, and thus printing inifinite structures
+   will still result in a loop.
+</ol>
+</small>
