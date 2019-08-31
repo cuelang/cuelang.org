@@ -144,7 +144,7 @@ largeCapital: {
 
 In general, in CUE one starts with a broad definition of a type, describing
 all possible instances.
-One than narrows down these definitions, possibly by combining constraints
+One then narrows down these definitions, possibly by combining constraints
 from different sources (departments, users), until a concrete data instance
 remains.
 
