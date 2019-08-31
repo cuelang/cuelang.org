@@ -17,7 +17,7 @@ but is not necessary to learn the language.
 There are two core aspects of CUE that make it different from
 the usual programming or configuration languages:
 
-- Values _are_ types
+- Types _are_ values
 - Values (and thus types) are ordered into a lattice
 
 These properties are relevant almost to everything that makes CUE what it is.
@@ -781,6 +781,7 @@ One can read more about this in Ann Copestake's
    is what is the useful value.
    But hat is a different topic.
    It doesn't work quite as well if one needs numeric values.
+   This is why CUE adds defaults.
 
 <li> Dection of structural cycles (an occurs check)
    is not yet implemented, and thus printing inifinite structures
