@@ -63,7 +63,7 @@ form of JSON schema.
 
 CUE constraints can be used to verify document-oriented databases.
 Its defaults mechanism and expression syntax allow for filling in missing
-values in older version of schema.
+values for an older version of a schema.
 More importantly, CUE's order independences allows
 "patch" specifications to be separated from the main schema definition.
 CUE can take care of merging these and report if there are any inconsistencies
