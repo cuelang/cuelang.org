@@ -30,7 +30,7 @@ See the problem?
 The language for the Norwegian proverb is set to `no`, which is interpreted
 as `false` in YAML.
 
-Luckily, CUE can help catch those pesky YAML quickly and swiftly.
+Luckily, CUE can help catch those pesky YAML quirks quickly and swiftly.
 
 
 ## Command line tool
