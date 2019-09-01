@@ -15,7 +15,7 @@ code generation and even scripting.
 The inference engine can be used to validate
 data in code or to include it as part of a code generation pipeline.
 
-A key thing that sets CUE appart from its peer languages
+A key thing that sets CUE apart from its peer languages
 is that it merges types and values into a single concept.
 Whereas in most languages types and values are strictly distinct,
 CUE orders them in a single hierarchy (a lattice, to be precise).
