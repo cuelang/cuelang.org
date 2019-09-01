@@ -18,7 +18,7 @@ generation to multiple sources.
 
 ### Extract data definition from existing sources
 
-When on identifies the need to define interchangeable data schema
+When one identifies the need to define interchangeable data schema
 one usually already has some code base to deal with.
 
 CUE can currently extract definitions from:
