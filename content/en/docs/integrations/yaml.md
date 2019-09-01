@@ -132,7 +132,7 @@ LanguageTag (mismatched types bool and string):
 
 ### Create
 
-The builtin `encoding/yaml.Marshal` generates JSON from within CUE.
+The builtin `encoding/yaml.Marshal` generates YAML from within CUE.
 
 {{< blocks/sidebyside >}}
 <div class="col">
@@ -162,7 +162,7 @@ configMap data "point.yaml":
 
 ### Parse
 
-The converse is also possible
+The inverse is also possible
 {{< blocks/sidebyside >}}
 <div class="col">
 {{< highlight none >}}
