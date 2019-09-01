@@ -129,7 +129,7 @@ This is used in [CUE's OpenAPI generator](/docs/integrations/openapi),
 for instance.
 
 
-## Comparissons
+## Comparisons
 
 ### JSON Schema / OpenAPI
 
