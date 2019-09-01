@@ -7,24 +7,40 @@ $display1-weight: 500 !default;
 $display2-weight: 100 !default;
 
 
-$primary:#2D70DE  !default;
+$primary: #4A86E8 !default;
 $primary-light: white !default;
-$secondary: #2D70DE !default;
+$secondary: #4A86E8 !default;
 $light: rgb(255, 255,255) !default;
 $grey:  #888 !default;
 
-.nav-shadow {
-    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
-}
 
 .navbar-brand {
-    color: white !important
+    color: white !important;
 }
 
 .navbar-bg-onscroll {
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
-    #agones-top {
-        display: block !important;
+}
+
+input[type="search"]::placeholder {
+    color: $secondary !important;
+}
+
+.td-search-input {
+    background: white !important;
+    color: $secondary !important;
+}
+
+.td-home .td-navbar:not(.navbar-bg-onscroll) {
+    background-color: white !important;
+
+    .navbar-brand {
+        display: none;
+    }
+
+    .nav-link {
+        color: $primary !important;
+        text-shadow: none;
     }
 }
 
@@ -33,12 +49,9 @@ $grey:  #888 !default;
 }
 
 #community a {
-    // color: #121314 !important;
-    color: #2D70DE;
+    color: $secondary !important;
 }
 
 #community {
-    // color: #121314 !important;
-    color: #2D70DE;
+    color: $secondary !important;
 }
-
