@@ -424,15 +424,15 @@ and $F$ and $F'$ in $\mathcal{F}$,
 $F$ subsumes $F'$, denoted $F \sqsubseteq F'$, if and only if:
 $$\begin{eqnarray}
     & & \pi \equiv_\mathcal{F} \pi' \text{ implies } \pi \equiv_\mathcal{F'} \pi' \\
-    & & \mathcal{P}_\mathcal{F} = t  \text{ implies }
-    \mathcal{P}_\mathcal{F'} = t' \text{ and } t' \sqsubseteq t \\
+    & & \mathcal{P}_\mathcal{F}(\pi) = t  \text{ implies }
+    \mathcal{P}_\mathcal{F'}(\pi) = t' \text{ and } t' \sqsubseteq t \\
 \end{eqnarray}$$
 where $\pi \equiv_\mathcal{F} \pi'$ means that
 $F\in\mathcal{F}$ contains a path equivalence or reentrancy between
 the paths $\pi$ and $\pi'$
 (two references starting from the root of a config end up at the same node)
-and $\mathcal{P}_\mathcal{F} = \tau$ means the type
-at that path (itself a subgraph in $\mathcal{F}$).
+and $\mathcal{P}_\mathcal{F}(\pi) = \tau$ means the type
+at path $\pi$ is $\tau$ (itself a graph in $\mathcal{F}$).
 </div>
 <p>
 <div style="margin-left: 40px">
