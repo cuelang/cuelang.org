@@ -117,7 +117,7 @@ Compared to CUE, JSON schema does not have a unified type and value model.
 This makes the ability to use JSON schema for boilerplate reduction minimal.
 As it is specified in JSON itself (it is not a DSL) it can be quite verbose.
 
-Overall CUE is a more consice, yet more powerful schema language.
+Overall CUE is a more concise, yet more powerful schema language.
 For instance, in CUE one can specify that two fields need to be identical to
 one another:
 
