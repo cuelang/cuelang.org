@@ -1,7 +1,7 @@
 +++
 title = "OpenAPI and CRDs"
 weight = 470
-description = "How CUE integrates with OpenOPI, an API description format for REST."
+description = "How CUE integrates with OpenAPI, an API description format for REST."
 +++
 
 OpenAPI is a standard for the description of REST APIs.
