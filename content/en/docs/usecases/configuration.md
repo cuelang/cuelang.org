@@ -56,7 +56,7 @@ Specs :: {
 // A spec is of type Spec
 spec: Spec
 spec: {
-  knid: string // error, misspelled field
+  kind: string // error, misspelled field
 
   name first: "Jane"
   name last:  "Doe"
