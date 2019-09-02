@@ -197,9 +197,9 @@ graph TD
     I --> Z("0")
     I --> One("1")
     IFI("1.1")
-    N --> CCF("20.0")
     GEH --> One
     GEH --> IFI
+    GEH --> CCF("20.0")
     LTC --> One
     LTC --> IFI
     Z --> E
@@ -431,8 +431,8 @@ where $\pi \equiv_\mathcal{F} \pi'$ means that
 $F\in\mathcal{F}$ contains a path equivalence or reentrancy between
 the paths $\pi$ and $\pi'$
 (two references starting from the root of a config end up at the same node)
-and $\mathcal{P}_\mathcal{F}(\pi) = \tau$ means the type
-at path $\pi$ is $\tau$ (itself a graph in $\mathcal{F}$).
+and $\mathcal{P}_\mathcal{F}(\pi) = t$ means the type
+at path $\pi$ is $t$ (itself a graph in $\mathcal{F}$).
 </div>
 <p>
 <div style="margin-left: 40px">
@@ -763,7 +763,7 @@ all of these fall in the realm of possibilities of CUE's model.
 The titel of this section refers to Bob Carpenter's
 "The Logic of Typed Feature Structures"
 (1992, Cambridge University Press, ISBN:0-521-41932-8).
-Most the inspiriation for the underlying work
+Most of the inspiriation for the underlying work
 presented here comes from the Lingo and LKB project.
 One can read more about this in Ann Copestake's
 "Implementing Typed Feature Structure Grammars."
@@ -779,11 +779,11 @@ One can read more about this in Ann Copestake's
 <li> TFSs typically don't have default values, it is the structure
    itself that is boilerplate removing, as the structure itself
    is what is the useful value.
-   But hat is a different topic.
+   But that is a different topic.
    It doesn't work quite as well if one needs numeric values.
    This is why CUE adds defaults.
 
-<li> Dection of structural cycles (an occurs check)
+<li> Detection of structural cycles (an occurs check)
    is not yet implemented, and thus printing inifinite structures
    will still result in a loop.
 </ol>
