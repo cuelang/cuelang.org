@@ -21,12 +21,12 @@ the usual programming or configuration languages:
 - Values (and thus types) are ordered into a lattice
 
 These properties are relevant almost to everything that makes CUE what it is.
-It simplifies the language, as many concepts that are distinct in other
+They simplify the language, as many concepts that are distinct in other
 languages fold together.
 The resulting order independence
 simplifies reasoning about values for both humans and machines.
 
-It also forces formal rigor on the language, such a defining
+It also forces formal rigor on the language, such as defining
 exactly what it means to be be optional, a default value, or null.
 Making sure all values fit in a value lattice leaves no wiggle room.
 
@@ -35,9 +35,9 @@ for instance:
 
 - a single language for specifying data, schema, validation
   and policy constraints,
-- meta reasoning, such as  determining whether,
+- meta reasoning, such as  determining whether
   a new schema version is backwards compatible,
-- automated rewriting, such as done by `cue trim`,
+- automated rewriting, such as is done by `cue trim`,
 - creating multi-source constraint pipelines, retaining documentation
   across normalization,
 
@@ -47,7 +47,7 @@ and so on.
 ## The Value Lattice
 
 Every value in CUE, including what would in most programming languages
-be considered types, are partially ordered in a single hierarchy
+be considered types, is partially ordered in a single hierarchy
 (a lattice, to be precise).
 Even entire configurations and schema are placed in this hierarchy.
 
@@ -122,7 +122,7 @@ An important aspect of a lattice is that for every two elements,
 there is a _unique_ instance of both elements that subsumes all other
 elements that are an instance of both elements.
 This is called the greatest lower bound, or meet.
-Now lets imagine we could define a lattice, for say,
+Now let's imagine we could define a lattice, for say,
 all configurations, schema and data.
 In that case, we could always unambiguously merge two such configurations
 independent of order.
@@ -152,7 +152,7 @@ graph TD
 This diagram shows that CUE interprets both `true` and `false` as
 an instance of `bool`.
 No surprises there.
-What is less ordinary is that, to CUE, `bool` is just as much value
+What is less ordinary is that, to CUE, `bool` is just as much a value
 as `true` and `false`.
 For instance, when we say that a value is both a `bool` and `true`,
 or in lattice terms,
@@ -221,9 +221,8 @@ CUE defines the constraints we see here in terms of its binary operators
 `>=` and `<`.
 It allows all binary operators that results in a boolean, except `==`,
 to be used as a constraint by leaving off the left value,
-where `op B` defines the set of all values for which `A op B` is true
-for any element `A` in that set.
-The constraint `<10` means all numbers less then `10`.
+where `op B` defines the set of all values `A` for which `A op B` is true.
+The constraint `<10` means all numbers less than `10`.
 Note that we say all numbers, even though `10` is an integer.
 This is because CUE allows implicit conversion between
 number types in comparisons.
@@ -276,11 +275,14 @@ graph TD
 
 There are actually values between top and the basic types.
 The `|` operator in CUE allows one to define "sum types" like `int | string`.
-The same operator can also be used to describe what is called "enums"
+The same operator can also be used to describe what are called "enums"
 in other languages, for instance, `1 | 2 | 3`.
 To CUE these are the same thing.
+<!-- (jba) The rest of this paragraph is obscure. What are "the two" things being mixed? How
+does the default example show that? -->
 You can also mix the two, as in `*1 | int`to define defaults (marked by `*`),
 or mix it with expressions like `*pet.species | "cat"`.
+<!-- (jba) The reader doesn't have enough info to understand this disjunction, so they can't map it to null coalescing even if they knew what that was. -->
 The latter is called null coalescing in some languages.
 This is not operator overloading: it is all the same operation in CUE.
 
@@ -356,7 +358,9 @@ in the older version.
 
 With optional fields it gets a bit more subtle, but basically,
 an instance may change an optional field to required, but not remove it.
-The backwards compatibility metaphore applies here as well.
+The backwards compatibility metaphor applies here as well. 
+<!-- (jba) It does apply, but in reverse order. When you write "an instance may change..." I immediately thought of the instance
+as the new API (since it is altering something that exists), but that is backwards. -->
 
 {{< blocks/sidebyside >}}
 <div class="col-lg-1">
@@ -400,6 +404,11 @@ An important thing to note is that, unlike for required fields,
 conflicting values for an optional fields do not cause a struct to be faulty.
 This definition was a result from fitting the notion of closed structs into
 the value lattice.
+<!-- (jba) First mention of closed; no one knows what it means. 
+Rest of paragraph is a bit obscure; explain in plain English instead.
+E.g. "If an optional field's value is innnconsistent, we can just drop the field from the struct.
+If a required field's value is inconsistent, we can't drop the field, so the whole struct is bad."
+-->
 But it can also be explained with some logic.
 A common practice in interpretations of logic is to allow
 infering $\neg P$ from $P \rightarrow \perp$.
@@ -458,7 +467,10 @@ but what they can mean strictly follows from this definition.
 We conveniently left out the discussion of `null` before.
 Not only does it make an uninspiring example to describe a lattice,
 it is also actually surprisingly complicated to pin down what it means.
-This is partly due to lack of guidance from the JSON standard regarding its
+This is partly due to lack of guidance from the JSON 
+<!-- (jba) First mention of JSON. What does JSON have to do with CUE? Are we talking about
+JSON's null here? Why? -->
+standard regarding its
 meaning and the different interpretations it gets in practice.
 
 Typescript creates some order in the chaos by introducing the concepts
@@ -475,14 +487,25 @@ But because types are values in CUE, TypeScript's concepts of
 `null`, bottom (`_|_`), and optional fields,
 resulting in a somewhat simpler model.
 
+<!-- (jba) Without more discussion and examples, the whole null section is confusing. -->
 
 ### Default values
+
+<!-- (jba) This section is too brief to be helpful. We don't really grasp what default values are at this point,
+so we can't quite see your point about boilerplate removal. I think you should start with a simple explanation of a default value, and add a couple of simple examples, like:
+
+  `a: int | *1` => a: 1 if there are no other mentions of `a`
+  
+  `a: int | *1
+   a: 2
+   ` => a: 2
+-->
 
 Default values are CUE's equivalant of inheritance,
 specifically the kind that allows instances to override any value of its parent.
 Without it, very little boilerplate removal would be possible.
 That is fine if CUE is used just for validation,
-but as it aimes to be useful across the entire configuration continuum,
+but as it aims to be useful across the entire configuration continuum,
 it seemed too restrictive to not have such a construct.
 
 #### Relation to inheritance
@@ -492,23 +515,28 @@ it is guaranteed that this will be the final result.
 If a value is not concrete (like `string`), it is clear the search
 for a concrete value is not over.
 In other words, an instance may never violate the constraints of its parent.
-This property makes it very hard to inadvertendly make false conclusions in CUE.
+This property makes it very hard to inadvertently make false conclusions in CUE.
 Default values do not change this property; they syntactically appear as
 non-concrete values.
 CUE also bails out and requires explicit values if two conflicting defaults
 are specified for the same field, again limiting the search space.
+<!-- (jba) There's no actual searching going on in the implementation (IIUC), so using the term "search
+space" is confusing. -->
 
 With approaches that allow overrides, whether it be the complex inheritance
 used in languages like GCL and Jsonnet
 or the much simpler file-based approaches as used in HCL and Kustomize,
 finding a declaration for a concrete field value does not guarantee
-a final answer.
+a final answer,
+because another concrete value that occurs elsewhere can override it.
 When one needs to change a value of such a field,
-it can be time consuming and,
-especially in a pressured situation,
+it can be time-consuming and,
+especially when under pressure,
 very tempting to skip following complicated inheritance chains,
-double check a configuration file specifying overlay order,
+double-check a configuration file specifying overlay order,
 or look for a file that is lexically sorted after the one under consideration.
+<!-- (jba) I think it's worth making the more general point that order-independence
+makes life much simpler. Compare with functional vs. imperative languages? -->
 
 So there is a clear benefit to having fully expanded configurations
 over such override methods.
@@ -516,6 +544,7 @@ CUE simulates that benefit by guaranteeing that any observed field value
 holds for the final result.
 If a user makes a false assumption that a concrete (default)
 value is the last in a chain,
+<!-- (jba) "last in a chain" makes it sound like order matters -->
 CUE will catch an erroneous change to that value and report the conflicting
 locations.
 
@@ -535,7 +564,7 @@ GCL and Jsonnet address this with assertions.
 Assertions, however, are typically decoupled from their fields,
 making them both hard to discover and hard to reason about.
 Where CUE simplifies constraints
-(`>=3 & <=10` and `>=5 & <=20` becomes `>=5 & <=10`, `>=1 & <=1` becomes `1`),
+(`>=3 & <=10` and `>=5 & <=20` become `>=5 & <=10`, `>=1 & <=1` becomes `1`),
 GCL and Jsonnet do not (it would be quite complex),
 causing an ever-growing pile of assertions.
 
@@ -545,7 +574,7 @@ causing an ever-growing pile of assertions.
 CUE defaults, which are values marked with a `*` in disjunctions,
 preserve the beneficial properties of the lattice.
 In order to do so,
-it must ensure that the order of picking defaults does not influence the outcome.
+CUE must ensure that the order of picking defaults does not influence the outcome.
 Suppose we define two fields, each with the same default value.
 We also define that these fields are equal to each other.
 {{< highlight cue >}}
@@ -570,7 +599,7 @@ What should the answer be?
 Picking either `1` or `2` as the default would result in a resolution of the
 constraints, but would also be highly undesirable, as the result would depend
 on the mood of the implementation.
-This also starts to reek like an NP-complete constraint solving problem.
+This also starts to smell like an NP-complete constraint solving problem.
 (Basic graph unification itself is pseudo linear.)
 CUE wants no part of these shenanigans.
 So the answer in this case is that there are no concrete values
@@ -578,7 +607,7 @@ as the defaults cannot be used.
 
 The model for this is actually quite simple.
 Conceptually, CUE keeps two parallel values, one for all possible values
-and for the default, which must an instance of the former.
+and one for the default, which must be an instance of the former.
 Rougly speaking, for the example with the conflict,
 it simultaneously evaluates:
 
@@ -632,7 +661,7 @@ b: a
 {{< /blocks/sidebyside >}}
 
 Here the defaults are not in conflict and can safely be returned.
-Note that it is not an all-or-noting game.
+Note that it is not an all-or-nothing game.
 The parallel values are determined on a field-by-field basis.
 So defaults can be selected, or not, independently for fields
 that do not depend on each other.
@@ -642,6 +671,11 @@ that do not depend on each other.
 
 The values lattice brings CUE another advantage: the ability to reason about
 values, schema, and constraints.
+<!-- (jba) I think "schema" is confusing as the plural. Choose either "schemas"
+or "schemata". I think the former is, sadly, preferable to modern ears.
+(This applies to several instances of "schema" above too.) 
+-->
+
 We already discussed how limiting inheritance,
 whether language-based or file-based,
 makes it easier for people to reason about values.
@@ -650,9 +684,9 @@ But it also makes it easier for machines.
 
 ### Boilerplate removal
 
-On the one hand, CUE's severe restrictions on inheritance limits its
+CUE's severe restrictions on inheritance limit its
 ability to define hierarchies of templates to remove boilerplate.
-On the other hand, however, it creates new mechanisms for removing boilerplate.
+But CUE provides some new mechanisms for removing boilerplate.
 
 Suppose a node must inherit from multiple templates, or mixins.
 Because order is irrelevant in CUE,
@@ -665,6 +699,7 @@ jobs <JobName>: acmeMonitoring
 ```
 tells CUE that _all_ jobs in `jobs` must mix in `acmeMonitoring`.
 There is no need to repeat this at every node.
+<!-- (jba) first use of angle-bracket syntax, I think. Needs some explanation. -->
 
 In CUE, though, we typically refer to `acmeMonitoring` as a constraint.
 After all, applying it will guarantee
@@ -672,10 +707,10 @@ that a job implements monitoring in a certain way.
 If such a constraint also contains sensible defaults, however,
 it simultaneously validates _and_ reduces boilerplate.[$^2$](#footnotes)
 
-This ability of constraints to simultaneously
+This ability to simultaneously
 enforce constraints and remove boilerplate
 was a key factor in the success of
-the typed feature structure systems that inspired the creation of CUE.
+the typed feature structure systems that inspired the creation of CUE. <!--(jba) add footnote -->
 
 This property is also useful in automation.
 The `cue trim` tool can automatically remove boilerplate from configurations
@@ -704,18 +739,18 @@ if one wants to equate a set
 of labels with a set of selectors
 (regardless of whether that is good practice).
 
-But it goes furter, consider
+But it goes further. Consider
 ```
 a: b + 1
 b: a - 1
 b: 1
 ```
-When evaluating `a`, it will attempt to resolve `b` and will find
+When evaluating `a`, CUE will attempt to resolve `b` and will find
 `(a-1) & 1` after unifying the two declarations for `b`.
 It cannot recursively resolve `a`, as this would result in an
 evaluation cycle.
-However, the expression `(a-1) & 1` will only not result in an error
-if `(a-1)` results in `1`.
+However, the expression `(a-1) & 1` is an error
+unless `(a-1)` is `1`.
 So if this configuration is ever to be a valid, we can safely assume
 the answer is `1` and verify that `a-1 == 1` after resolving `a`.
 
@@ -725,7 +760,7 @@ a: 2
 b: 1
 ```
 without resorting to any fancy algebraic constraint satisfaction solvers,
-just plane ole logic.
+just plain ol' logic.
 Most cycles that do not result in inifite structures can be handled by CUE.
 In fact, it could handle most infinite structures in bounded time
 as well, but it puts limits on such cycles for
