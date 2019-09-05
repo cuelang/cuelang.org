@@ -85,6 +85,7 @@ If the YAML string from our introduction were embedded within a CUE file,
 the fix would be the following.
 
 {{< highlight none >}}
+// dim.cue
 import "encoding/yaml"
 
 // Phrases defines a schema for a valid phrase.
@@ -126,7 +127,7 @@ string, we were able to catch the error before it made it into production.
 $ cue vet dim.cue
 phrases: error in call to encoding/yaml.Validate: conflicting values false and
 LanguageTag (mismatched types bool and string):
-    ./dim.cue:17:10
+    ./dim.cue:18:10
 {{< /highlight >}}
 
 
