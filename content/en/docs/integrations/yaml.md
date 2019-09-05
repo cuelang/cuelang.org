@@ -61,10 +61,10 @@ The `cue vet` command can verify that the values in `ranges.yaml`
 are correct by just mentioning the two files on the command line.
 
 {{< highlight none >}}
-$ cue vet checks.cue
+$ cue vet ranges.yaml checks.cue
 max: invalid value 5 (out of bound >10):
-    ./check.cue:2:15
-    ./data.yaml:5:7
+    ./check.cue:2:16
+    ./ranges.yaml:5:7
 {{< /highlight >}}
 
 ### Import YAML

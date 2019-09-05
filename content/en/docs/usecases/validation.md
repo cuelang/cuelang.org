@@ -47,10 +47,10 @@ The `cue vet` command can verify that the values in `ranges.yaml`
 are correct by just mentioning the two files on the command line.
 
 {{< highlight none >}}
-$ cue vet checks.cue
+$ cue vet ranges.yaml checks.cue
 max: invalid value 5 (out of bound >10):
-    ./check.cue:2:15
-    ./data.yaml:5:7
+    ./check.cue:2:16
+    ./ranges.yaml:5:7
 {{< /highlight >}}
 
 
@@ -71,7 +71,7 @@ in the definitions, even before they are applied to a concrete case.
 
 CUE can be applied directly on the data in code using its API,
 but it can also be used to compute JSON schema from CUE definitions.
-(See [`cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/openapi).)
+(See [cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/openapi).)
 If a document-oriented database natively supports JSON schema it will likely
 have its benefits to do so.
 Using CUE to generate the schema has several advantages over doing so directly:
