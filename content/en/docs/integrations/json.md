@@ -128,7 +128,6 @@ configs <_>: json.Validate(Dimensions)
 configs bed:      #"{ "width": 2, "height": 0.1, "depth": 2 }"#
 configs table:    #"{ "width": "34", "height": 23, "depth": 0.2 }"#
 configs painting: #"{ "width": 34, "height": 12, "depht": 0.2 }"#
-}
 {{< /highlight >}}
 
 {{< highlight none >}}
