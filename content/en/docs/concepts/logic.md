@@ -49,7 +49,7 @@ and so on.
 Every value in CUE, including what would in most programming languages
 be considered types, is partially ordered in a single hierarchy
 (a lattice, to be precise).
-Even entire configurations and schema are placed in this hierarchy.
+Even entire configurations and schemas are placed in this hierarchy.
 
 
 ### What is a lattice?
@@ -123,7 +123,7 @@ there is a _unique_ instance of both elements that subsumes all other
 elements that are an instance of both elements.
 This is called the greatest lower bound, or meet.
 Now let's imagine we could define a lattice, for say,
-all configurations, schema and data.
+all configurations, schemas and data.
 In that case, we could always unambiguously merge two such configurations
 independent of order.
 This is exactly what CUE does!
@@ -277,14 +277,14 @@ There are actually values between top and the basic types.
 The `|` operator in CUE allows one to define "sum types" like `int | string`.
 The same operator can also be used to describe what are called "enums"
 in other languages, for instance, `1 | 2 | 3`.
-To CUE these are the same thing.
-<!-- (jba) The rest of this paragraph is obscure. What are "the two" things being mixed? How
-does the default example show that? -->
-You can also mix the two, as in `*1 | int`to define defaults (marked by `*`),
-or mix it with expressions like `*pet.species | "cat"`.
-<!-- (jba) The reader doesn't have enough info to understand this disjunction, so they can't map it to null coalescing even if they knew what that was. -->
-The latter is called null coalescing in some languages.
-This is not operator overloading: it is all the same operation in CUE.
+To CUE these two things—disjunctions of types and disjunctions of values—are the same thing.
+You can also mix types and values in a disjunction, as in `*1 | int`to define defaults (marked by `*`),
+and you can use expressions as well, like `*pet.species | "cat"`.
+The latter evaluates to the the value of `pet.species`, or `"cat"` if
+`pet.species` is null; this is called null coalescing in some languages.
+
+These various uses of `|` are not the result of operator overloading: they are
+all the same operation in CUE.
 
 <!--
 {{< mermaid >}}
@@ -358,9 +358,7 @@ in the older version.
 
 With optional fields it gets a bit more subtle, but basically,
 an instance may change an optional field to required, but not remove it.
-The backwards compatibility metaphor applies here as well. 
-<!-- (jba) It does apply, but in reverse order. When you write "an instance may change..." I immediately thought of the instance
-as the new API (since it is altering something that exists), but that is backwards. -->
+The backwards compatibility metaphor applies here as well.
 
 {{< blocks/sidebyside >}}
 <div class="col-lg-1">
@@ -406,7 +404,7 @@ This definition was a result from fitting the notion of closed structs into
 the value lattice.
 <!-- (jba) First mention of closed; no one knows what it means. 
 Rest of paragraph is a bit obscure; explain in plain English instead.
-E.g. "If an optional field's value is innnconsistent, we can just drop the field from the struct.
+E.g. "If an optional field's value is inconsistent, we can just drop the field from the struct.
 If a required field's value is inconsistent, we can't drop the field, so the whole struct is bad."
 -->
 But it can also be explained with some logic.
@@ -520,8 +518,6 @@ Default values do not change this property; they syntactically appear as
 non-concrete values.
 CUE also bails out and requires explicit values if two conflicting defaults
 are specified for the same field, again limiting the search space.
-<!-- (jba) There's no actual searching going on in the implementation (IIUC), so using the term "search
-space" is confusing. -->
 
 With approaches that allow overrides, whether it be the complex inheritance
 used in languages like GCL and Jsonnet
@@ -542,9 +538,8 @@ So there is a clear benefit to having fully expanded configurations
 over such override methods.
 CUE simulates that benefit by guaranteeing that any observed field value
 holds for the final result.
-If a user makes a false assumption that a concrete (default)
-value is the last in a chain,
-<!-- (jba) "last in a chain" makes it sound like order matters -->
+
+If the user makes the false assumption that no concrete value is specified to discard the default value,
 CUE will catch an erroneous change to that value and report the conflicting
 locations.
 
@@ -670,11 +665,7 @@ that do not depend on each other.
 ## Reasoning and Inference
 
 The values lattice brings CUE another advantage: the ability to reason about
-values, schema, and constraints.
-<!-- (jba) I think "schema" is confusing as the plural. Choose either "schemas"
-or "schemata". I think the former is, sadly, preferable to modern ears.
-(This applies to several instances of "schema" above too.) 
--->
+values, schemas, and constraints.
 
 We already discussed how limiting inheritance,
 whether language-based or file-based,
