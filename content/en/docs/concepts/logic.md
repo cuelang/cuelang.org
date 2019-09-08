@@ -358,7 +358,9 @@ in the older version.
 
 With optional fields it gets a bit more subtle, but basically,
 an instance may change an optional field to required, but not remove it.
-The backwards compatibility metaphor applies here as well.
+The backwards compatibility metaphor applies here as well. 
+<!-- TODO(jba) It does apply, but in reverse order. When you write "an instance may change..." I immediately thought of the instance
+as the new API (since it is altering something that exists), but that is backwards. -->
 
 {{< blocks/sidebyside >}}
 <div class="col-lg-1">
@@ -518,6 +520,8 @@ Default values do not change this property; they syntactically appear as
 non-concrete values.
 CUE also bails out and requires explicit values if two conflicting defaults
 are specified for the same field, again limiting the search space.
+<!-- (jba) There's no actual searching going on in the implementation (IIUC), so using the term "search
+space" is confusing. -->
 
 With approaches that allow overrides, whether it be the complex inheritance
 used in languages like GCL and Jsonnet
