@@ -1,9 +1,9 @@
 [build]
 publish = "public"
-command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
+command = "sh build.sh"
 
 [context.deploy-preview]
-command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo -b $DEPLOY_URL"
+command = "sh build.sh -b $DEPLOY_URL"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.56.3"
