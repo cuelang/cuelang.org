@@ -1,3 +1,6 @@
 [submodule "themes/docsy"]
 	path = themes/docsy
 	url = https://github.com/google/docsy.git
+[submodule "vendor/github.com/cuelang/cue"]
+	path = vendor/github.com/cuelang/cue
+	url = https://github.com/cuelang/cue.git
