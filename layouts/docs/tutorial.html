@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{ .Content }}
+
+{{with .Prev}}{{if .Title}}next: <a href="{{ .Permalink }}">{{ .Title }}</a>{{end}}{{end}}
+
+{{ end }}
