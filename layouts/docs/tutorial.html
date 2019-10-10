@@ -1,6 +1,10 @@
 {{ define "main" }}
+
+<div class="td-content">
+<h1>{{.Title}}</h1>
 {{ .Content }}
 
 {{with .Prev}}{{if .Title}}next: <a href="{{ .Permalink }}">{{ .Title }}</a>{{end}}{{end}}
 
+</div>
 {{ end }}
