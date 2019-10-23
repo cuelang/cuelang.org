@@ -69,7 +69,7 @@ was in common use in computational linguistics at that time and was
 successfully used to manage grammars and lexicons of over 100k lines of
 declarative definitions.
 These were effectively very large
-configurations of something as irregular and complex as the human language.
+configurations of something as irregular and complex as a human language.
 A property of these systems were that the types, or constraints, one
 defines validate the data while simultaneously reducing boilerplate.
 Overall, this approach seemed to be extremely well-suited
