@@ -44,8 +44,24 @@ Here is how they differ:
 ## Modules
 
 A module contains a configuration layed out in a directory hierarchy.
+It contains the everything that is needed to deterministically
+determine the outcome of a CUE configuration.
+The root of this directory is marked by containing a `cue.mod`
+directory.
+The contents of this directory are mostly managed by the `cue` tool.
+In that sense, `cue.mod` is analogous to the `.git` directory marking
+the root directory of a repo, but where its contents are mostly
+managed by the `git` tool.
+
+<!--
+TODO: should this be the case?:
+
 A module root is identified by a `cue.mod` directory and spans all
 subdirectories that do not itself contain a `cue.mod` directory.
+
+For going up, maybe, but for enforcing constraint top-down
+it would be good if users could not disable the root by adding a cue.mod.
+-->
 
 The use of a module is optional, but required if one wants to import files.
 
@@ -79,6 +95,10 @@ cue.mod
 |-- gen         // files generated from external sources
 |-- usr         // user-defined constraints
 ```
+
+Aside from an occasional addition to the `usr` subdirectory or tweak
+to `module.cue`, this directory is
+predominantly managed by the `cue` tool.
 
 The `module.cue` file defines settings such as
 globally unique _module identifier_ (more on this in the
