@@ -63,7 +63,6 @@ spec: {
 }
 ```
 
-
 ### Simplicity at Scale
 
 When using a configuration language to reduce boilerplate
@@ -85,7 +84,7 @@ Like with other configuration languages, CUE can add complexity if values
 are organized to come from multiple places.
 However, as CUE disallows overrides, deep layerings are naturally prevented.
 More importantly, CUE can also enhance readability.
-A defintion in one file may apply to values in many other files.
+A definition in one file may apply to values in many other files.
 Where one would usually have to open all these files to verify validity;
 with CUE one can see it at a glance.
 
