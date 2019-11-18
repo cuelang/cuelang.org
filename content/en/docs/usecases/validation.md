@@ -96,7 +96,7 @@ Using CUE to generate the schema has several advantages over doing so directly:
 As discussed in
 ["Be useful at all scales"](/docs/about#be-useful-at-all-scales),
 there is a high cost to changing languages as one reaches the limits
-with a cerain approach.
+with a certain approach.
 
 CUE adds the benefit of type checking to plain data files.
 Once in use, it allows the same,
