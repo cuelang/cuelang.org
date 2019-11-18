@@ -133,7 +133,7 @@ for instance.
 
 ### JSON Schema / OpenAPI
 
-JSON Schema and OpenAPI is a purely data-driven data definition standard.
+JSON Schema and OpenAPI are purely data-driven data definition standards.
 OpenAPI originates from Swagger.
 As of version 3, OpenAPI is more or less a subset of JSON Schema.
 OpenAPI is used to define Kubernetes Custom Resource Definitions.
@@ -263,7 +263,7 @@ for creating OpenAPI from them.
 
 ### CDDL
 
-The Consice Data Definition Language (CDDL) is used to define
+The Concise Data Definition Language (CDDL) is used to define
 the structure of CBOR or JSON data.
 CDDL shares many of the same constructs from CUE, including
 disjunctions, embedding, optional fields, and definitions.
