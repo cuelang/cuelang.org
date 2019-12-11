@@ -27,7 +27,7 @@ The resulting order independence
 simplifies reasoning about values for both humans and machines.
 
 It also forces formal rigor on the language, such as defining
-exactly what it means to be be optional, a default value, or null.
+exactly what it means to be optional, a default value, or null.
 Making sure all values fit in a value lattice leaves no wiggle room.
 
 Finally, the combination of all this allows for many unique features,
