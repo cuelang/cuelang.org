@@ -12,7 +12,7 @@ although the approach it takes is quite different from conventional
 data templating languages.
 
 CUE basic operation merges configurations in a way that the outcome is
-alway the same regardless of the order in which it is carried out
+always the same regardless of the order in which it is carried out
 (it is associative, commutative and idempotent).
 This property enables many of the its favorable properties, as discussed below.
 
