@@ -4,7 +4,7 @@ weight = 1
 description = "Learn about CUE's theoretical basis and what makes it different."
 mermaid = true
 +++
-This page explains the core concept on which pretty much everthing that is CUE
+This page explains the core concept on which pretty much everything that is CUE
 depends.
 It helps to get a top-down understanding and frame of reference,
 but is not necessary to learn the language.
@@ -64,7 +64,7 @@ A lattice is a partially ordered set, in which every two elements
 have a unique least upper bound (join) and greatest lower bound (meet).
 By definition this means there is always a single root (top) and a single
 leaf (bottom).
-Let's consider what this means by example.
+Let's consider what this means by looking at an example.
 This diagrams below shows a lattice of all values of respectively a
 2- and 3- element set, ordered by the subset relation.
 
@@ -280,7 +280,7 @@ in other languages, for instance, `1 | 2 | 3`.
 To CUE these two things—disjunctions of types and disjunctions of values—are the same thing.
 You can also mix types and values in a disjunction, as in `*1 | int`to define defaults (marked by `*`),
 and you can use expressions as well, like `*pet.species | "cat"`.
-The latter evaluates to the the value of `pet.species`, or `"cat"` if
+The latter evaluates to the value of `pet.species`, or `"cat"` if
 `pet.species` is null; this is called null coalescing in some languages.
 
 These various uses of `|` are not the result of operator overloading: they are
@@ -413,7 +413,7 @@ infering $\neg P$ from $P \rightarrow \perp$.
 If for an optional field we find the value $\perp$, we can infer
 "not that field", or, drop it.
 If we derive $\perp$ for a required field, we have a problem,
-as a required field cannot not be.
+as a required field cannot be omitted.
 
 
 {{< alert color="info" title="The answer to life, the universe and everything." >}}
