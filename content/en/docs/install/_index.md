@@ -25,6 +25,13 @@ In addition, CUE can be installed with using brew on MacOS and Linux:
 brew install cuelang/tap/cue
 ```
 
+### Installation on Arch Linux
+
+For Arch Linux the community maintains a Arch User Repository package called [cuelang-bin](https://aur.archlinux.org/packages/cuelang-bin/):
+
+```
+yay -S cuelang-bin
+```
 
 ## Install CUE from source
 
