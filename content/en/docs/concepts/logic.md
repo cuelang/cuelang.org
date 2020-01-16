@@ -337,7 +337,9 @@ graph TD
     aibi --> a1b1
     a1b1 --> E
     a1 --> E
+    a1 --> a1b1
     bi --> b1["b: 1"]
+    b1 --> a1b1
     b1 --> E
     E("⊥")
 {{< /mermaid >}}
