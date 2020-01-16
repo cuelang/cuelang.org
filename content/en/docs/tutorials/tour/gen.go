@@ -32,7 +32,7 @@ import (
 
 const hugoDir = "hugo"
 
-const srcDir = "../../../../../src/cue/doc/tutorial/basics"
+const srcDir = "../../../../../cloned/cue/doc/tutorial/basics"
 
 func main() {
 	log.SetFlags(log.Lshortfile)
