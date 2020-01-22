@@ -27,7 +27,7 @@ Generating an OpenAPI definition can be as simple as
 {{< highlight go >}}
 import "cuelang.org/go/encoding/openapi"
 
-func genOpenAPI(inst *cue.Instance) (b []byte, error) {
+func genOpenAPI(inst *cue.Instance) ([]byte, error) {
     b, err := openapi.Gen(inst, nil)
     if err != nil {
         return nil, err
