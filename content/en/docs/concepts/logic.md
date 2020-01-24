@@ -65,7 +65,7 @@ have a unique least upper bound (join) and greatest lower bound (meet).
 By definition this means there is always a single root (top) and a single
 leaf (bottom).
 Let's consider what this means by looking at an example.
-This diagrams below shows a lattice of all values of respectively a
+This diagrams below show a lattice of all values of respectively a
 2- and 3- element set, ordered by the subset relation.
 
 {{< blocks/sidebyside >}}
@@ -122,10 +122,10 @@ An important aspect of a lattice is that for every two elements,
 there is a _unique_ instance of both elements that subsumes all other
 elements that are an instance of both elements.
 This is called the greatest lower bound, or meet.
-Now let's imagine we could define a lattice, for say,
+Now let's imagine we could define a lattice for, say,
 all configurations, schemas and data.
 In that case, we could always unambiguously merge two such configurations
-independent of order.
+independently of order.
 This is exactly what CUE does!
 
 
@@ -179,7 +179,7 @@ The result of `true | false` is indeed `bool` in CUE.
 With numbers things get a bit more interesting.
 CUE has gone through various iterations of the number type system
 to find the mix of being practical and strict, while still being simple.
-CUE recognizes `number`, and the instances`int` and `float` as classes
+CUE recognizes `number`, and the instances `int` and `float` as classes
 of numbers.
 For now it suffices to only consider `number` and `int`, the latter being
 an instance of the former.
@@ -219,7 +219,7 @@ the traditional concepts of value and type.
 
 CUE defines the constraints we see here in terms of its binary operators
 `>=` and `<`.
-It allows all binary operators that results in a boolean, except `==`,
+It allows all binary operators that result in a boolean, except `==`,
 to be used as a constraint by leaving off the left value,
 where `op B` defines the set of all values `A` for which `A op B` is true.
 The constraint `<10` means all numbers less than `10`.
@@ -301,7 +301,7 @@ graph TD
 
 #### Structs
 
-Ordering of scalar types, like numbers and strings is fairly straightforward
+Ordering of scalar types, like numbers and strings, is fairly straightforward
 and will feel familiar to anyone that has worked with a typed programming
 language.
 But ordering structs might seem a bit unusual.
@@ -788,10 +788,10 @@ all of these fall in the realm of possibilities of CUE's model.
 
 ## References
 
-The titel of this section refers to Bob Carpenter's
+The title of this section refers to Bob Carpenter's
 "The Logic of Typed Feature Structures"
 (1992, Cambridge University Press, ISBN:0-521-41932-8).
-Most of the inspiriation for the underlying work
+Most of the inspiration for the underlying work
 presented here comes from the Lingo and LKB project.
 One can read more about this in Ann Copestake's
 "Implementing Typed Feature Structure Grammars."
