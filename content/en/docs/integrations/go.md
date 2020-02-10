@@ -65,7 +65,7 @@ all services in our configuration are of type `v1.Service`.
 {{< highlight go >}}
 import "k8s.io/api/core/v1"
 
-services <Name>: v1.Service
+services: [string]: v1.Service
 {{< /highlight >}}
 
 You can download definitions from any Go project like this.
@@ -221,7 +221,7 @@ It does so by lining up the top-level CUE names with Go definitions.
 The CUE code can use field tags, similar to those used in Go,
 to override the naming.
 ```go
-b, err := Generate("path/to/go/pkg", instance, nil)
+b, err := gocode.Generate("path/to/go/pkg", instance, nil)
 if err != nil {
     // handle error
 }

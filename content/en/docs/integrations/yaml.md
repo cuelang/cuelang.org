@@ -90,7 +90,7 @@ import "encoding/yaml"
 
 // Phrases defines a schema for a valid phrase.
 Phrases :: {
-    phrases: { <_>: Phrase }
+    phrases: [string]: Phrase
 
     Phrase :: {
         lang:         LanguageTag
@@ -140,7 +140,7 @@ The builtin `encoding/yaml.Marshal` generates YAML from within CUE.
 {{< highlight none >}}
 import "encoding/yaml"
 
-configMap data "point.yaml":
+configMap: data: "point.yaml":
     yaml.Marshal({
         x: 4.5
         y: 2.34

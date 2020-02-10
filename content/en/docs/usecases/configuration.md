@@ -58,8 +58,8 @@ spec: Spec
 spec: {
   knid: "Homo Sapiens" // error, misspelled field
 
-  name first: "Jane"
-  name last:  "Doe"
+  name: first: "Jane"
+  name: last:  "Doe"
 }
 ```
 
