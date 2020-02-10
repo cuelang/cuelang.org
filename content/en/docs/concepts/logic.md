@@ -688,7 +688,7 @@ One can even say on a single line that a collection of
 fields must mix in a template.
 For instance,
 ```
-jobs <JobName>: acmeMonitoring
+jobs: [string]: acmeMonitoring
 ```
 tells CUE that _all_ jobs in `jobs` must mix in `acmeMonitoring`.
 There is no need to repeat this at every node.

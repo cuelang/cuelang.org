@@ -62,7 +62,7 @@ The builtin `encoding/json.Marshal` generates JSON from within CUE.
 {{< highlight none >}}
 import "encoding/json"
 
-configMap data "point.json":
+configMap: data: "point.json":
     json.Marshal({
         x: 4.5
         y: 2.34
@@ -123,11 +123,11 @@ Dimensions :: {
 }
 
 // Validate JSON configurations embedded strings.
-configs <_>: json.Validate(Dimensions)
+configs: [string]: json.Validate(Dimensions)
 
-configs bed:      #"{ "width": 2, "height": 0.1, "depth": 2 }"#
-configs table:    #"{ "width": "34", "height": 23, "depth": 0.2 }"#
-configs painting: #"{ "width": 34, "height": 12, "depht": 0.2 }"#
+configs: bed:      #"{ "width": 2, "height": 0.1, "depth": 2 }"#
+configs: table:    #"{ "width": "34", "height": 23, "depth": 0.2 }"#
+configs: painting: #"{ "width": 34, "height": 12, "depht": 0.2 }"#
 {{< /highlight >}}
 
 {{< highlight none >}}

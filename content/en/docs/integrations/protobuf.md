@@ -34,7 +34,7 @@ Adjusted to CUE:
   message        | struct          | Message fields become CUE fields, whereby names are mapped to lowerCamelCase.
   enum           | e1 | e2 | ...   | Where ex are strings. A separate mapping is
                  |                 | generated to obtain the numeric values.
-  map<K, V>      | { <>: V }       | All keys are converted to strings. 
+  map<K, V>      | { [string]: V } | All keys are converted to strings. 
   repeated V     | [...V]          | null is accepted as the empty list [].
   bool           | bool
   string         | string
