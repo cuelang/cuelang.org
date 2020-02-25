@@ -141,7 +141,7 @@ navbar_logo = false
 	name = "Slack"
 	url = "https://join.slack.com/t/cuelang/shared_invite/enQtNzQwODc3NzYzNTA0LTAxNWQwZGU2YWFiOWFiOWQ4MjVjNGQ2ZTNlMmIxODc4MDVjMDg5YmIyOTMyMjQ2MTkzMTU5ZjA1OGE0OGE1NmE"
 	icon = "fab fa-slack"
-        desc = "Chat with other CUE enthusiast"
+        desc = "Chat with other CUE enthusiasts"
 
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 
