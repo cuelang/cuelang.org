@@ -5,7 +5,9 @@ set -x
 git submodule update -f --init --recursive
 
 cd cloned
-git clone -n https://github.com/cuelang/cue
+if [[ ! -d cue/ ]] ; then
+  git clone -n https://github.com/cuelang/cue
+fi
 cd cue
 git checkout 317163484ec5d79259a4ea6524d3870419510639
 cd ../..
