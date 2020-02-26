@@ -54,6 +54,10 @@ hrefTargetBlank = true
 angledQuotes = false
 latexDashes = true
 
+## Since hugo 0.60 the new renderer requires this for raw HTML to be displayed
+[markup.goldmark.renderer]
+unsafe= true
+
 # Image processing configuration.
 [imaging]
 resampleFilter = "CatmullRom"
