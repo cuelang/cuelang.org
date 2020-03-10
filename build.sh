@@ -2,35 +2,22 @@
 set -e
 set -x
 
-git submodule update -f --init --recursive
+# build.sh is used by netlify when deploying the site and locally when ensuring
+# you environment is complete
 
-cd cloned
-if [ -d cue ]
+# If we are running on netlify (i.e. a deploy) and we are building tip then we
+# need to grab the master of our cuelang.org/go dependency
+if [ "$NETLIFY" = "true" ] && [ "$BRANCH" = "tip" ]
 then
-	cd cue
-	git fetch
-else
-	git clone -n https://github.com/cuelang/cue
-	cd cue
+	GOPROXY=direct go get cuelang.org/go@master
 fi
-git checkout -f 317163484ec5d79259a4ea6524d3870419510639
-cd ../..
 
-PUSHD=$(pwd)
-cat <<EOF > content/en/docs/references/spec.md
-+++
-title = "Language Specification"
-+++
-EOF
-cat cloned/cue/doc/ref/spec.md >> content/en/docs/references/spec.md
-cd content/en/docs/tutorials/tour
-go test .
-go run gen.go
-cd ${PUSHD}
+git submodule update -f --init --recursive
+npm install
+go generate ./...
 
-# TODO
-#   shell documentation
-#   cue/doc/contribute.md
-#
-
-hugo $@
+# If we are running on netlify (i.e. a deploy) build the site
+if [ "$NETLIFY" = "true" ]
+then
+	hugo $@
+fi

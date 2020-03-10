@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Update tip
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
+    - name: Force push to tip
+      run: git push -f origin master:tip
