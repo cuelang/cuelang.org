@@ -5,11 +5,15 @@ set -x
 git submodule update -f --init --recursive
 
 cd cloned
-if [[ ! -d cue/ ]] ; then
-  git clone -n https://github.com/cuelang/cue
+if [ -d cue ]
+then
+	cd cue
+	git fetch
+else
+	git clone -n https://github.com/cuelang/cue
+	cd cue
 fi
-cd cue
-git checkout 317163484ec5d79259a4ea6524d3870419510639
+git checkout -f 317163484ec5d79259a4ea6524d3870419510639
 cd ../..
 
 PUSHD=$(pwd)
