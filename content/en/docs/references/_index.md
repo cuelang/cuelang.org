@@ -27,7 +27,7 @@ See https://github.com/cuelang/cue/issues/10
 ## Language Specification
 
 The source of truth of how the CUE language should behave is encoded in the
-[CUE language specification](https://cuelang.org/docs/references/spec/).
+[CUE language specification](/docs/references/spec/).
 Notes on the formalism underlying the specification can be found
 [here](https://github.com/cuelang/cue/blob/master/doc/ref/impl.md).
 
