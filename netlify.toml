@@ -1,13 +1,12 @@
 [build]
-publish = "public"
+publish = "_public"
 command = "sh build.sh"
+
+[build.environment]
+HUGO_ENV = "production"
+GO_VERSION = "1.14"
+NODE_VERSION = "12.16.1"
+HUGO_VERSION = "0.57.1"
 
 [context.deploy-preview]
 command = "sh build.sh -b $DEPLOY_URL"
-
-[context.deploy-preview.environment]
-HUGO_VERSION = "0.56.3"
-
-[context.production.environment]
-HUGO_VERSION = "0.56.3"
-HUGO_ENV = "production"
