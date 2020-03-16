@@ -10,3 +10,15 @@ HUGO_VERSION = "0.67.0"
 
 [context.deploy-preview]
 command = "sh build.sh -b $DEPLOY_URL"
+
+[[redirects]]
+  from = "https://cuelang.org/issue/*"
+  to = "https://github.com/cuelang/cue/issues/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "https://cuelang.org/issues/*"
+  to = "https://github.com/cuelang/cue/issues/:splat"
+  status = 302
+  force = true
