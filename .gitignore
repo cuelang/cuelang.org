@@ -1,6 +1,3 @@
 _public/
 node_modules/
 resources/
-content/en/docs/references/spec.md
-content/en/docs/tutorials/tour/*/*.md
-!content/en/docs/tutorials/tour/*/_index.md
