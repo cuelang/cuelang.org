@@ -175,7 +175,7 @@ For instance,
 could be represented as
 ```
 "a": 3
-"b": "c": "foo
+"b": "c": "foo"
 ```
 All the information of the original JSON file is retained in this
 representation.
