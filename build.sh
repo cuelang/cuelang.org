@@ -10,6 +10,8 @@ set -x
 if [ "$NETLIFY" = "true" ] && [ "$BRANCH" = "tip" ]
 then
 	GOPROXY=direct go get cuelang.org/go@master
+	# Now force it through the proxy so that the /pkg.go.dev redirect works
+	go get cuelang.org/go@$(go list -m -f={{.Version}} cuelang.org/go)
 fi
 
 git submodule update -f --init --recursive
