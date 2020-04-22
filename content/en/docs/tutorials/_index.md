@@ -10,6 +10,6 @@ There are currently two tutorials:
 - [Basics](/docs/tutorials/tour/intro/):
   this tutorial teaches the basics of the CUE language.
 
-- [Kubernetes](https://github.com/cuelang/cue/blob/master/doc/tutorial/kubernetes/README.md):
+- [Kubernetes](/docs/tutorials/kubernetes):
   this tutorial teaches about the CUE tooling in the context of
   Kubernetes configurations.

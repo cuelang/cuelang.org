@@ -111,7 +111,7 @@ On the other hand, CUE's order independence allows abstraction layers
 to inject arbitrary raw API in a controlled manner,
 allowing a general escape hatch to support new or uncovered features.
 See the Manual section of the
-[Kubernetes tutorial](https://github.com/cuelang/cue/tree/master/doc/tutorial/kubernetes/README.md)
+[Kubernetes tutorial](/docs/tutorials/kubernetes)
 for an example.
 
 ### Tooling

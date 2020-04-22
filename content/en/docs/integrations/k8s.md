@@ -14,7 +14,7 @@ have an abstraction layer that could be converted to not only Kubernetes,
 but also other targets like docker compose, but on the other hand have full
 access to the Kubernetes API without needing continuous support.
 The "Manual" section in the
-[Kubernetes Tutorial](https://cue.googlesource.com/cue/+/refs/heads/master/doc/tutorial/kubernetes/README.md)
+[Kubernetes Tutorial](/docs/tutorials/kubernetes)
 describes how this can be accomplished.
 
 CUE is not specific to Kubernetes, though.

@@ -13,7 +13,7 @@ For now, we refer to the documentation included in the CUE tool itself:
 $ cue help cmd
 ```
 or the "Define Commands" section of the
-[Kubernetes Tutorial](https://cue.googlesource.com/cue/+/refs/heads/master/doc/tutorial/kubernetes/README.md).
+[Kubernetes Tutorial](/docs/tutorials/kubernetes).
 
 {{< alert color="warning" title="note" >}}
 User-defined command line flags are not yet supported.
