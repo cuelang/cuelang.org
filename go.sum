@@ -1,6 +1,6 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
-cuelang.org/go v0.1.0 h1:IEGtnIaD6wwtZZ/bsXEIGAKVP3jVHza7d/ZTO39Jjpg=
-cuelang.org/go v0.1.0/go.mod h1:fqiLgsri/9JYLk6Us2l8W6jeWlvpHVaH3qfnYdobhSQ=
+cuelang.org/go v0.1.2 h1:q0i9ZcE7Ix7NmMyzdj1287FSr0x2xTBZ3KW4+rtfjbU=
+cuelang.org/go v0.1.2/go.mod h1:fqiLgsri/9JYLk6Us2l8W6jeWlvpHVaH3qfnYdobhSQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
