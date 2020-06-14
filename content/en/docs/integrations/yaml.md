@@ -89,21 +89,21 @@ the fix would be the following.
 import "encoding/yaml"
 
 // Phrases defines a schema for a valid phrase.
-Phrases :: {
-    phrases: [string]: Phrase
+#Phrases: {
+    phrases: [string]: #Phrase
 
-    Phrase :: {
-        lang:         LanguageTag
+    #Phrase: {
+        lang:         #LanguageTag
         text:         !=""
         attribution?: !="" // must be non-empty when specified
 
     }
-    LanguageTag :: =~"^[a-zA-Z0-9-_]{2,}$"
+    #LanguageTag: =~"^[a-zA-Z0-9-_]{2,}$"
 }
 
 // phrases is a YAML string with a field phrases that is a map of Phrase
 // objects.
-phrases: yaml.Validate(Phrases)
+phrases: yaml.Validate(#Phrases)
 
 phrases: """
     phrases:

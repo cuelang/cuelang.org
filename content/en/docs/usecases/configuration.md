@@ -39,7 +39,7 @@ In CUE types and values are a unified concept, which gives it very
 expressive, yet intuitive and compact, typing capabilities.
 
 ```
-Spec :: {
+#Spec: {
   kind: string
 
   name: {
@@ -53,8 +53,8 @@ Spec :: {
   maximum?: int & >minimum
 }
 
-// A spec is of type Spec
-spec: Spec
+// A spec is of type #Spec
+spec: #Spec
 spec: {
   knid: "Homo Sapiens" // error, misspelled field
 

@@ -31,26 +31,27 @@ Consider the following versions of the same API:
 ```
 // Release notes:
 // - You can now specify your age and your hobby!
-V1 :: {
+#V1: {
     age:   >=0 & <=100
     hobby: string
 }
 // Release notes:
 // - People get to be older than 100, so we relaxed it.
 // - It seems not many people have a hobby, so we made it optional.
-V2 :: {
+#V2: {
     age:    >=0 & <=150 // people get older now
     hobby?: string      // some people don't have a hobby
 }
 // Release notes:
 // - Actually no one seems to have a hobby nowadays anymore, so we dropped the field.
-V3 :: {
+#V3: {
     age: >=0 & <=150
 }
 ```
 
-The `::` makes it a definition, which means it is not part of data model
-(the fields are not output to JSON, for instance).
+Declarations with a name starting with `#` are definitions.
+Defintions are not emitted when converting to data, for instance when
+exporting to JSON, and thus do not need to be concrete in such cases.
 Defintions assume the definition of closed structs, which means a user may
 only use fields that are explicitly defined.
 

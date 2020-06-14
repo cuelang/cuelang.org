@@ -116,14 +116,14 @@ point: json.Unmarshal(data)
 // dim.cue
 import "encoding/json"
 
-Dimensions :: {
+#Dimensions: {
     width:  number
     depth:  number
     height: number
 }
 
 // Validate JSON configurations embedded strings.
-configs: [string]: json.Validate(Dimensions)
+configs: [string]: json.Validate(#Dimensions)
 
 configs: bed:      #"{ "width": 2, "height": 0.1, "depth": 2 }"#
 configs: table:    #"{ "width": "34", "height": 23, "depth": 0.2 }"#
