@@ -1,6 +1,7 @@
 [build]
-publish = "_public"
-command = "sh build.sh"
+  functions = "_functions"
+  publish = "_public"
+  command = "sh build.sh"
 
 [build.environment]
 HUGO_ENV = "production"
