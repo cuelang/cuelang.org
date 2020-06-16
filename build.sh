@@ -20,9 +20,9 @@ then
 	go get cuelang.org/go@$(go list -m -f={{.Version}} cuelang.org/go)
 
 	# Update the playground
-	pushd play > /dev/null
+	cd play
 	GOPROXY=direct go get github.com/cue-sh/playground@master
-	popd > /dev/null
+	cd ..
 fi
 
 # Main site
