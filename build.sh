@@ -21,7 +21,7 @@ then
 
 	# Update the playground
 	cd play
-	GOPROXY=direct go get github.com/cue-sh/playground@master
+	GOPROXY=direct go get -d github.com/cue-sh/playground@master
 	cd ..
 fi
 
