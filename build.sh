@@ -15,9 +15,14 @@ fi
 # github.com/cue-sh/playground dependencies
 if [ "$BRANCH" = "tip" ]
 then
-	GOPROXY=direct go get cuelang.org/go@master github.com/cue-sh/playground@master
+	GOPROXY=direct go get cuelang.org/go@master
 	# Now force cuelang.org/go  through the proxy so that the /pkg.go.dev redirect works
 	go get cuelang.org/go@$(go list -m -f={{.Version}} cuelang.org/go)
+
+	# Update the playground
+	pushd play > /dev/null
+	GOPROXY=direct go get github.com/cue-sh/playground@master
+	popd > /dev/null
 fi
 
 # Main site
