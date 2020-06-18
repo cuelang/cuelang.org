@@ -8,7 +8,7 @@ description = "How CUE integrates with the YAML data-serialization standard."
 
 Unlike with JSON, CUE is not a superset of YAML.
 One of the design goals of CUE was to be easily machine generatable and
-modifyable.
+modifiable.
 The sensitivity to indentation and the lexical obscurity of the typing of
 tokens make YAML too bug prone for this purpose.
 
