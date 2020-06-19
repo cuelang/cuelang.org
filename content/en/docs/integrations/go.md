@@ -37,7 +37,7 @@ The `cue get go` fetches Go packages using Go's package manager
 and makes their definitions available through the CUE module's `pkg` directory
 using the same package naming conventions as in Go.
 
-For example, to download the CUE defintions for the core Kubernetes types, run
+For example, to download the CUE definitions for the core Kubernetes types, run
 
 {{< highlight go >}}
 cue get go k8s.io/api/core/v1
