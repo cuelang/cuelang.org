@@ -50,9 +50,9 @@ Consider the following versions of the same API:
 ```
 
 Declarations with a name starting with `#` are definitions.
-Defintions are not emitted when converting to data, for instance when
+Definitions are not emitted when converting to data, for instance when
 exporting to JSON, and thus do not need to be concrete in such cases.
-Defintions assume the definition of closed structs, which means a user may
+Definitions assume the definition of closed structs, which means a user may
 only use fields that are explicitly defined.
 
 In CUE, an API is backwards compatible if it subsumes the older one, or
@@ -92,7 +92,7 @@ This is not backwards compatibly as it breaks previous field that did
 contain a `hobby` field.
 
 The current API only reports a yay or nay.
-Plans are to give a full actionable reports.
+The plan is to give full actionable reports.
 Feedback welcome!
 
 
@@ -119,7 +119,7 @@ Which leads us to the next topic.
 Adding constraints from many sources can result in a lot of redundancy.
 Even worse, constraints can be specified in different logical forms,
 making their additive form verbose and unwieldy.
-This is fine if all a system does using these constraints to validate data.
+This is fine if all a system does using these constraints is validate data.
 But this is problematic if the added constraints are to form the basis for,
 say, human consumption.
 
