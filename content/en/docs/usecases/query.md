@@ -23,9 +23,9 @@ In the mean time, you can query data programmatically using the CUE API.
 What you will need to do is
 
 - load data and constraints using
-  `cuelang.org/cue.Runtime` or
-  `cuelang.org/cue/load.Packages`.
-- Walk over data using `cuelang.org/cue.Value`'s `Walk` method
+  `cuelang.org/go/cue.Runtime` or
+  `cuelang.org/go/cue/load.Instances`.
+- Walk over data using `cuelang.org/go/cue.Value`'s `Walk` method
   or look up specific values.
 - call `pattern.Subsumes(value)`, where `pattern` and `value` are
   `cue.Value`s to see if value is an instance of pattern.
