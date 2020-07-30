@@ -65,7 +65,7 @@ all services in our configuration are of type `v1.Service`.
 {{< highlight go >}}
 import "k8s.io/api/core/v1"
 
-services: [string]: v1.Service
+services: [string]: v1.#Service
 {{< /highlight >}}
 
 You can download definitions from any Go project like this.
