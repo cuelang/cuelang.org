@@ -149,6 +149,12 @@ navbar_logo = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
+	name = "GitHub Discussions"
+	url = "https://github.com/cuelang/cue/discussions"
+	icon = "fab fa-github"
+        desc = "Ask questions and discuss CUE"
+
+[[params.links.user]]
 	name = "Slack"
 	url = "https://join.slack.com/t/cuelang/shared_invite/enQtNzQwODc3NzYzNTA0LTAxNWQwZGU2YWFiOWFiOWQ4MjVjNGQ2ZTNlMmIxODc4MDVjMDg5YmIyOTMyMjQ2MTkzMTU5ZjA1OGE0OGE1NmE"
 	icon = "fab fa-slack"
