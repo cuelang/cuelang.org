@@ -153,7 +153,7 @@ remains.
 
 CUE's constraints act as data validators, but also double as
 a mechanism to reduce boilerplate.
-This is a powerful approach, but requires some thinking different.
+This is a powerful approach, but requires some different thinking.
 With traditional inheritance approaches one specifies the templates that
 are to be inherited from at each point they should be used.
 In CUE, instead, one selects a set of nodes in the configuration to which
