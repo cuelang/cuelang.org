@@ -605,7 +605,7 @@ as the defaults cannot be used.
 The model for this is actually quite simple.
 Conceptually, CUE keeps two parallel values, one for all possible values
 and one for the default, which must be an instance of the former.
-Rougly speaking, for the example with the conflict,
+Roughly speaking, for the example with the conflict,
 it simultaneously evaluates:
 
 {{< blocks/sidebyside >}}
