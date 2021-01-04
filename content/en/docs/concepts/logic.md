@@ -683,7 +683,7 @@ But CUE provides some new mechanisms for removing boilerplate.
 
 Suppose a node must inherit from multiple templates, or mixins.
 Because order is irrelevant in CUE,
-there is no need to specify these in a particalar order or even in one location.
+there is no need to specify these in a particular order or even in one location.
 One can even say on a single line that a collection of
 fields must mix in a template.
 For instance,
