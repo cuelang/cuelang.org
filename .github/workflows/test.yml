@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
+      uses: actions/checkout@v2.3.4
     - name: Install Go
-      uses: actions/setup-go@9fbc767707c286e568c92927bbf57d76b73e0892
+      uses: actions/setup-go@v1.1.3
       with:
-        go-version: '1.14.1'
+        go-version: '1.15.6'
     - name: Regenerate
       run: go generate ./...
     - name: Check module is tidy
