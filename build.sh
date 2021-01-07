@@ -18,6 +18,7 @@ then
 	GOPROXY=direct go get cuelang.org/go@master
 	# Now force cuelang.org/go  through the proxy so that the /pkg.go.dev redirect works
 	go get cuelang.org/go@$(go list -m -f={{.Version}} cuelang.org/go)
+	go mod tidy
 
 	# Update the playground
 	cd play
