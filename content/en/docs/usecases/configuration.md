@@ -14,7 +14,7 @@ data templating languages.
 CUE basic operation merges configurations in a way that the outcome is
 always the same regardless of the order in which it is carried out
 (it is associative, commutative and idempotent).
-This property enables many of the its favorable properties, as discussed below.
+This property is the foundation for many other favorable properties, as discussed below.
 
 
 ## Core issues addressed by CUE
@@ -175,7 +175,7 @@ In fact, this is a core principle.
 Let's use a real-world example to make this distinction clear:
 In the override model of inheritance, one can take an existing template,
 say a dog, and modify it to become a cat.
-Trim the ears, dry of the nose, and what have you.
+Trim the ears, dry off the nose, and what have you.
 
 In CUE, it is a matter of classification.
 Cats and dogs are both instances of animals, but once an entity is defined
@@ -192,7 +192,7 @@ a string, one cannot violate the properties of a type in CUE.
 
 These restrictions reduce flexibility, but also enhance clarity.
 To ensure that a configuration holds a certain property, just declare it
-in any file included the project to make it so.
+in any file included in the project to make it so.
 There is no need to look at other files.
 As we saw; the imposed restrictions can also improve, rather than hurt,
 the ability to remove boilerplate compared to inheritance-based languages.
