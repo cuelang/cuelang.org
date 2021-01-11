@@ -14,7 +14,7 @@ data templating languages.
 CUE basic operation merges configurations in a way that the outcome is
 always the same regardless of the order in which it is carried out
 (it is associative, commutative and idempotent).
-This property enables many of its favorable properties, as discussed below.
+This property is the foundation for many other favorable properties, as discussed below.
 
 
 ## Core issues addressed by CUE
