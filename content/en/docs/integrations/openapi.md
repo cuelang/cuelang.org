@@ -48,5 +48,5 @@ The [cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/
 package provides options to make a definition self-contained,
 expand references, filtering constraints, and so on.
 
-If expanding references is selected it will ensure the output is
+If _expanding references_ is selected it will ensure the output is
 in the Structural OpenAPI form, which is required for CRDs 1.15.
