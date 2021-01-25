@@ -7,7 +7,7 @@ mermaid = true
 This page explains the core concept on which pretty much everything that is CUE
 depends.
 It helps to get a top-down understanding and frame of reference,
-but is not necessary to learn the language.
+but it is not necessary for learning the language.
 
 <!--
 ## Types ~~and~~ are values
@@ -467,7 +467,8 @@ but what they can mean strictly follows from this definition.
 We conveniently left out the discussion of `null` before.
 Not only does it make an uninspiring example to describe a lattice,
 it is also actually surprisingly complicated to pin down what it means.
-This is partly due to lack of guidance from the JSON standard regarding its
+This is partly due to lack of guidance from the JSON
+standard regarding its
 meaning and the different interpretations it gets in practice.
 <!-- (jba) First mention of JSON. What does JSON have to do with CUE? Are we talking about
 JSON's null here? Why? -->
