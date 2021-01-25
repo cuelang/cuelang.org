@@ -13,7 +13,7 @@ One aspect of OpenAPI is to define data schema.
 CUE supports converting CUE values to such schema.
 As CUE is more expressive than OpenAPI, it is not possible to generate
 a fully accurate OpenAPI schema.
-But CUE makes a best effort to encode as must as possible.
+But CUE makes a best effort to encode as much as possible.
 
 
 ## Generate OpenAPI
