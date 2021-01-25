@@ -33,8 +33,12 @@ func genOpenAPI(inst *cue.Instance) ([]byte, error) {
         return nil, err
     }
 
-    var out = &bytes.Buffer{}
-    _ = json.Indent(out, b, "", "   ")
+    var out bytes.Buffer
+    err = json.Indent(&out, b, "", "   ")
+    if err != nil {
+        return nil, err
+    }
+    
     return out.Bytes(), nil
 }
 
