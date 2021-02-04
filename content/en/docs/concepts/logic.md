@@ -430,7 +430,7 @@ but in its most abstract form, it can loosely be defined as follows:
 <div style="margin-left: 40px">
 Subsumption: given a set $\mathcal{F}$ of all TFSs (graphs, CUE values, basically),
 and $F$ and $F'$ in $\mathcal{F}$,
-$F$ subsumes $F'$, denoted $F \sqsubseteq F'$, if and only if:
+$F$ subsumes $F'$, denoted $F' \sqsubseteq F$, if and only if:
 $$\begin{eqnarray}
     & & \pi \equiv_\mathcal{F} \pi' \text{ implies } \pi \equiv_\mathcal{F'} \pi' \\
     & & \mathcal{P}_\mathcal{F}(\pi) = t  \text{ implies }
