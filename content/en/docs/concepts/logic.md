@@ -467,11 +467,10 @@ but what they can mean strictly follows from this definition.
 We conveniently left out the discussion of `null` before.
 Not only does it make an uninspiring example to describe a lattice,
 it is also actually surprisingly complicated to pin down what it means.
-This is partly due to lack of guidance from the JSON 
+This is partly due to lack of guidance from the JSON standard regarding its
+meaning and the different interpretations it gets in practice.
 <!-- (jba) First mention of JSON. What does JSON have to do with CUE? Are we talking about
 JSON's null here? Why? -->
-standard regarding its
-meaning and the different interpretations it gets in practice.
 
 Typescript creates some order in the chaos by introducing the concepts
 `undefined` and `void` in addition to `null`.
