@@ -15,9 +15,9 @@ fi
 # github.com/cue-sh/playground dependencies
 if [ "$BRANCH" = "tip" ]
 then
-	GOPROXY=direct go get cuelang.org/go@master
+	GOPROXY=direct go get -d cuelang.org/go@master
 	# Now force cuelang.org/go  through the proxy so that the /pkg.go.dev redirect works
-	go get cuelang.org/go@$(go list -m -f={{.Version}} cuelang.org/go)
+	go get -d cuelang.org/go@$(go list -m -f={{.Version}} cuelang.org/go)
 	go mod tidy
 
 	# Update the playground. The dist.sh script run below upgrades to the tip of
