@@ -15,9 +15,10 @@ fi
 # github.com/cue-sh/playground dependencies
 if [ "$BRANCH" = "tip" ]
 then
-	GOPROXY=direct go get cuelang.org/go@master
+	GOPROXY=direct go get -d cuelang.org/go@master
+	cuever=$(go list -m -f {{.Version}} cuelang.org/go)
 	# Now force cuelang.org/go  through the proxy so that the /pkg.go.dev redirect works
-	go get cuelang.org/go@$(go list -m -f={{.Version}} cuelang.org/go)
+	go get -d cuelang.org/go@$cuever
 	go mod tidy
 
 	# Update the playground
@@ -44,4 +45,10 @@ cd play
 go mod download
 mkdir moddownload
 unzip -d moddownload $modCache/cache/download/$(go list -m -f={{.Path}}/@v/{{.Version}} github.com/cue-sh/playground).zip
-bash moddownload/$(go list -m -f={{.Path}}@{{.Version}} github.com/cue-sh/playground)/dist.sh
+cd moddownload/$(go list -m -f={{.Path}}@{{.Version}} github.com/cue-sh/playground)/
+if [ "$BRANCH" = "tip" ]
+then
+	# Also move to tip of cue for the playground
+	go get -d cuelang.org/go@$cuever
+fi
+bash dist.sh
