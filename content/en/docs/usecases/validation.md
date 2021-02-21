@@ -78,7 +78,7 @@ Using CUE to generate the schema has several advantages over doing so directly:
 
 - CUE is far less verbose
 - CUE can extract base definitions from other sources, like Go and Protobuf
-- it allows annotating validation code in these other sources
+- It allows annotating validation code in these other sources
   (e.g. field tags for Go, options for Protobuf).
 - CUE's ability to merge, validate, and normalize configurations,
   allows separation of concerns between main schema and patches for
