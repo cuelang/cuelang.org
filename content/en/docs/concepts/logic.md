@@ -33,9 +33,9 @@ Making sure all values fit in a value lattice leaves no wiggle room.
 Finally, the combination of all this allows for many unique features,
 for instance:
 
-- a single language for specifying data, schema, validation
+- a single language to specify data, schema, validation
   and policy constraints,
-- meta reasoning, such as  determining whether
+- meta reasoning, such as determining whether
   a new schema version is backwards compatible,
 - automated rewriting, such as is done by `cue trim`,
 - creating multi-source constraint pipelines, retaining documentation
@@ -56,7 +56,7 @@ Even entire configurations and schemas are placed in this hierarchy.
 
 {{< alert >}}
 This section is useful to understand what a lattice is,
-but is not strictly needed to grasp the following sections,
+but is not strictly needed to grasp the subsequent sections,
 nor the specifics of CUE itself. Skip at will.
 {{< /alert >}}
 
@@ -118,7 +118,7 @@ because we defined our lattice to use the subset relation.
 But we can use any relation we want as long as the properties of a lattice
 are upheld.
 
-An important aspect of a lattice is that for every two elements,
+An important aspect of a lattice is this: for any two elements,
 there is a _unique_ instance of both elements that subsumes all other
 elements that are an instance of both elements.
 This is called the greatest lower bound, or meet.
@@ -401,7 +401,7 @@ conflicting required fields result in a faulty struct</i>
 <p>
 <p>
 An important thing to note is that, unlike for required fields,
-conflicting values for an optional fields do not cause a struct to be faulty.
+conflicting values for an optional field do not cause a struct to be faulty.
 This definition was a result from fitting the notion of closed structs into
 the value lattice.
 <!-- (jba) First mention of closed; no one knows what it means. 
