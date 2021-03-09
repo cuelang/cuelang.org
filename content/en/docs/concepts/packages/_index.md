@@ -77,7 +77,7 @@ within the module root:
 
     cue mod init [module name]
 
-The module name is required if a packages within a module should be able
+The module name is required if a package within a module should be able
 to import another package within the module.
 
 A module can also be created by setting up the `cue.mod` directory
