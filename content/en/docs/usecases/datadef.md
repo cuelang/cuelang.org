@@ -91,7 +91,7 @@ In `V3` the `hobby` field is explicitly disallowed.
 This is not backwards compatibly as it breaks previous field that did
 contain a `hobby` field.
 
-The current API only reports a yay or nay.
+The current API only reports a _yea_ or _nay_.
 The plan is to give full actionable reports.
 Feedback welcome!
 
