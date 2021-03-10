@@ -15,7 +15,7 @@ values, ranges, and various other constraints.
 OpenAPI even allows for complex logical combinators.
 
 A key difference, however, is that these standards do not unify schema
-and values, the thing that makes CUE so powerful.
+and values—the thing that makes CUE so powerful.
 There is no value lattice.
 This limits these standards in various ways.
 <!-- There is no or very limited possibility for boilerplate removal. -->
