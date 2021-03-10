@@ -137,4 +137,4 @@ Such a thing is not possible in JSON schema (or most configuration languages
 for that matter).
 
 More on JSON Schema and its subset, OpenAPI,
-in [Data Definition](/docs/usecases/datadef#json-schema-openapi).
+in [Schema Definition](/docs/usecases/datadef#json-schema--openapi).
