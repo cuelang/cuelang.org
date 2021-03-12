@@ -124,7 +124,7 @@ But this is problematic if the added constraints are to form the basis for,
 say, human consumption.
 
 CUE's logical inference engine automatically reduces constraints.
-It's API makes it possible to compute and select between
+Its API makes it possible to compute and select between
 various normal forms to optimize for a certain representation.
 This is used in [CUE's OpenAPI generator](/docs/integrations/openapi),
 for instance.
