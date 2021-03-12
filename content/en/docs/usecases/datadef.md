@@ -24,8 +24,8 @@ This limits these standards in various ways.
 
 ### Validating backwards compatibility
 
-CUE's model makes it easy to verify newer versions of schema are backwards
-compatible with older.
+CUE's model makes it easy to verify that newer versions of schema
+are backwards-compatible with older versions.
 
 Consider the following versions of the same API:
 ```
