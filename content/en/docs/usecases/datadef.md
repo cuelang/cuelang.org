@@ -152,7 +152,7 @@ CUE doesn't have such a construct, partly to avoid its logical pitfalls.
 However, it can get a good approximation by interpreting `¬P` as `P→⊥`.
 {{% /alert %}}
 
-An advantage of OpenAPI is that it purely defined in terms of data (JSON).
+An advantage of OpenAPI is that it is purely defined in terms of data (JSON).
 This allows sending it over the wire.
 It is defined such that implementing an interpreter is fairly straightforward.
 
