@@ -401,10 +401,10 @@ conflicting required fields result in a faulty struct</i>
 <p>
 <p>
 An important thing to note is that, unlike for required fields,
-conflicting values for an optional fields do not cause a struct to be faulty.
+conflicting values for an optional field do not cause a struct to be faulty.
 This definition was a result from fitting the notion of closed structs into
 the value lattice.
-<!-- (jba) First mention of closed; no one knows what it means. 
+<!-- (jba) First mention of closed; no one knows what it means.
 Rest of paragraph is a bit obscure; explain in plain English instead.
 E.g. "If an optional field's value is inconsistent, we can just drop the field from the struct.
 If a required field's value is inconsistent, we can't drop the field, so the whole struct is bad."
@@ -494,7 +494,7 @@ resulting in a somewhat simpler model.
 so we can't quite see your point about boilerplate removal. I think you should start with a simple explanation of a default value, and add a couple of simple examples, like:
 
   `a: int | *1` => a: 1 if there are no other mentions of `a`
-  
+
   `a: int | *1
    a: 2
    ` => a: 2
