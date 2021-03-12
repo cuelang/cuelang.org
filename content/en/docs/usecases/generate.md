@@ -77,7 +77,7 @@ standardization of constraints.
 It focusses on simplicity, speed, termination guarantees and
 being able run embedded in applications.
 
-Unification of basic typed-feature strucutres has pseudo-linear run
+Unification of basic typed-feature structures has pseudo-linear run
 time complexity.
 The addition of comprehensions make the operation polynomial.
 Not disallowing recursion would make CUE Turing complete.
