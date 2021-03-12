@@ -1,0 +1,12 @@
+[[menu.main]]
+    name = "Documentation"
+    weight = -101
+    url = "/docs/"
+[[menu.main]]
+    name = "GitHub"
+    weight = 100
+    url = "https://github.com/cuelang/cue"
+[[menu.main]]
+    name = "Play"
+    weight = 100
+    url = "https://tip.cuelang.org/play"

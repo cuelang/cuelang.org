@@ -43,6 +43,10 @@ disableAliases = true
     name = "GitHub"
     weight = 100
     url = "https://github.com/cuelang/cue"
+[[menu.main]]
+    name = "Play"
+    weight = 100
+    url = "https://cuelang.org/play"
 
 # Configure how URLs look like per section.
 [permalinks]
