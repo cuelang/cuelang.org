@@ -16,7 +16,6 @@ Binaries for various operating systems, including Linux, Windows, and Mac OS
 can be downloaded from
 [CUE releases section on Github](https://github.com/cuelang/cue/releases).
 
-
 ### Install using homebrew
 
 In addition, CUE can be installed with using brew on MacOS and Linux:
@@ -41,20 +40,21 @@ Go 1.12 or higher (see below)
 
 ### Installing CUE
 
-To download and install the `cue` command line tool run
+<!-- Keep the following in sync with cmd/cue/cmd/testdata/script/install*.txt -->
+
+If you already have Go installed, the short version is:
 
 ```
-go get -u cuelang.org/go/cmd/cue
+GO111MODULE=on go get cuelang.org/go/cmd/cue
 ```
 
-And make sure the install directory is in your path.
-
-To also download the API and documentation, run
+Or, if you are using Go 1.16:
 
 ```
-go get -u cuelang.org/go/cue
+go install cuelang.org/go/cmd/cue@latest
 ```
 
+This will install the `cue` command line tool.
 
 ### Installing Go
 
