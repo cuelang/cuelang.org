@@ -47,7 +47,7 @@ From the root of your CUE module<!--TODO(ref)-->, you will now see
 `./pkg/k8s.io/api/core` populated with the extracted CUE definitions.
 Projects, like Kubernetes, do not have to support such conversions.
 CUE derives the interpretation by analyzing how the Go types convert
-with the `encoding/json`.
+with `encoding/json`.
 
 {{< alert color="info" title="Mixing manually created with generated files">}}
 The files that the `cue` tool generates all end with `_go_gen.cue`.
@@ -192,7 +192,7 @@ well as deriving unspecified values from constraints.
 
 A field in a CUE instance can be set to a Go value that conforms to the
 constraints of this instance using the `Fill` method.
-Building on the example of the "Load CUE into GO" section, we can write
+Building on the example of the "Load CUE into Go" section, we can write
 
 ```go
 inst, _ := instance.Fill("you", "place")
