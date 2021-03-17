@@ -432,15 +432,15 @@ Subsumption: given a set $\mathcal{F}$ of all TFSs (graphs, CUE values, basicall
 and $F$ and $F'$ in $\mathcal{F}$,
 $F$ subsumes $F'$, denoted $F' \sqsubseteq F$, if and only if:
 $$\begin{eqnarray}
-    & & \pi \equiv_\mathcal{F} \pi' \text{ implies } \pi \equiv_\mathcal{F'} \pi' \\
-    & & \mathcal{P}_\mathcal{F}(\pi) = t  \text{ implies }
-    \mathcal{P}_\mathcal{F'}(\pi) = t' \text{ and } t' \sqsubseteq t \\
+    & & \pi \equiv_{F} \pi' \text{ implies } \pi \equiv_{F'} \pi' \\
+    & & \mathcal{P}_{F}(\pi) = t  \text{ implies }
+    \mathcal{P}_{F'}(\pi) = t' \text{ and } t' \sqsubseteq t \\
 \end{eqnarray}$$
-where $\pi \equiv_\mathcal{F} \pi'$ means that
+where $\pi \equiv_{F} \pi'$ means that
 $F\in\mathcal{F}$ contains a path equivalence or reentrancy between
 the paths $\pi$ and $\pi'$
 (two references starting from the root of a config end up at the same node)
-and $\mathcal{P}_\mathcal{F}(\pi) = t$ means the type
+and $\mathcal{P}_{F}(\pi) = t$ means the type
 at path $\pi$ is $t$ (itself a graph in $\mathcal{F}$).
 </div>
 <p>
