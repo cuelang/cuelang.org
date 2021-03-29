@@ -62,15 +62,15 @@ Some of them, like Mongo, optionally allow schema definitions, often in the
 form of JSON schema.
 
 CUE constraints can be used to verify document-oriented databases.
-Its defaults mechanism and expression syntax allow for filling in missing
+Its default mechanism and expression syntax allow for filling in missing
 values for an older version of a schema.
-More importantly, CUE's order independences allows
+More importantly, CUE's order independence allows
 "patch" specifications to be separated from the main schema definition.
 CUE can take care of merging these and report if there are any inconsistencies
 in the definitions, even before they are applied to a concrete case.
 
 CUE can be applied directly on the data in code using its API,
-but it can also be used to compute JSON schema from CUE definitions.
+but it can also be used to compute JSON schemas from CUE definitions.
 (See [cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/openapi).)
 If a document-oriented database natively supports JSON schema it will likely
 have its benefits to do so.
