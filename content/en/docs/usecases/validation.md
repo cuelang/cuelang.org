@@ -56,7 +56,7 @@ max: invalid value 5 (out of bound >10):
 
 ### Validating document-oriented databases
 
-Document-oriented databases like Mongo and many others are charactarized
+Document-oriented databases like Mongo and many others are characterized
 by having flexible schema.
 Some of them, like Mongo, optionally allow schema definitions, often in the
 form of JSON schema.
