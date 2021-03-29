@@ -58,7 +58,7 @@ max: invalid value 5 (out of bound >10):
 
 Document-oriented databases like Mongo and many others are charactarized
 by having flexible schema.
-Some of them, like Mongo, optionally allow schema defintions, often in the
+Some of them, like Mongo, optionally allow schema definitions, often in the
 form of JSON schema.
 
 CUE constraints can be used to verify document-oriented databases.
