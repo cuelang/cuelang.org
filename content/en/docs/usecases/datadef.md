@@ -196,7 +196,7 @@ OpenAPI
         "description": "Info describes...",
         "type": "object",
         "required": [
-            "name",
+            "name"
         ],
         "properties": {
           "name": {
