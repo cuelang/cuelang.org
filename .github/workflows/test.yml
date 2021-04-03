@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+  repository_dispatch: # So that the main CUE repo can trigger a check on new releases
   pull_request:
     branches:
       - '**'
@@ -18,7 +19,10 @@ jobs:
       with:
         go-version: '1.16.3'
     - name: Ensure latest CUE
-      run: go get -d cuelang.org/go@latest # the git clean check later catches this
+      # The latest git clean check ensures that this call is effectively
+      # side effect-free. Using GOPROXY=direct ensures we don't accidentally
+      # hit a stale cache in the proxy.
+      run: GOPROXY=direct go get -d cuelang.org/go@latest
     - name: Regenerate
       run: go generate ./...
     - name: Check module is tidy
