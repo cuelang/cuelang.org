@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - master
-  repository_dispatch: # So that the main CUE repo can trigger a check on new releases
+  repository_dispatch:
   pull_request:
     branches:
       - '**'
