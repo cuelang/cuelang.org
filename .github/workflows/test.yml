@@ -12,11 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2
     - name: Install Go
-      uses: actions/setup-go@v1.1.3
+      uses: actions/setup-go@v2
       with:
-        go-version: '1.15.6'
+        go-version: '1.16.3'
+    - name: Ensure latest CUE
+      run: go get -d cuelang.org/go@latest # the git clean check later catches this
     - name: Regenerate
       run: go generate ./...
     - name: Check module is tidy
