@@ -1,4 +1,4 @@
 ---
 type: redirect
-redirectURL: https://pkg.go.dev/cuelang.org/go@v0.3.0
+redirectURL: https://pkg.go.dev/cuelang.org/go@v0.3.1
 ---
