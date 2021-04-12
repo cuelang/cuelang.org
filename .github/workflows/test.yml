@@ -22,7 +22,10 @@ jobs:
       # The latest git clean check ensures that this call is effectively
       # side effect-free. Using GOPROXY=direct ensures we don't accidentally
       # hit a stale cache in the proxy.
-      run: GOPROXY=direct go get -d cuelang.org/go@latest
+      run: |
+        GOPROXY=direct go get -d cuelang.org/go@latest
+        cd play
+        GOPROXY=direct go get -d github.com/cue-sh/playground@latest
     - name: Regenerate
       run: go generate ./...
     - name: Check module is tidy

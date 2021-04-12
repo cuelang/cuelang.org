@@ -13,7 +13,7 @@ fi
 env="production"
 
 # If we are running on netlify (i.e. a deploy) and we are building tip then we
-# need to grab the master of our cuelang.org/go and
+# need to grab the master of our cuelang.org/go and main from
 # github.com/cue-sh/playground dependencies
 if [ "$BRANCH" = "tip" ]
 then
@@ -26,7 +26,7 @@ then
 	# Update the playground. The dist.sh script run below upgrades to the tip of
 	# CUE
 	cd play
-	GOPROXY=direct go get -d github.com/cue-sh/playground@master
+	GOPROXY=direct go get -d github.com/cue-sh/playground@main
 	cd ..
 fi
 
