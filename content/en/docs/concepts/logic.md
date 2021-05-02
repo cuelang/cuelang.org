@@ -158,7 +158,7 @@ For instance, when we say that a value is both a `bool` and `true`,
 or in lattice terms,
 if we find the greatest lower bound of these values,
 the answer is `true`.
-Again maybe no suprise, except that in CUE this is actually
+Again maybe no surprise, except that in CUE this is actually
 an operation, denoted `bool & true`.
 
 This also explains the odd fourth element in the graph labeled bottom.
@@ -209,7 +209,7 @@ graph TD
     E("⊥ (bottom)")
 {{< /mermaid >}}
 
-Here we see what is tradionally a type class (number and int)
+Here we see what is traditionally a type class (number and int)
 and some concrete instances, that is, specific numbers.
 They are ordered as expected: `0` and `1` are
 integral numbers, whereas `20.0` (by definition) and `1.1` are numbers,
@@ -501,7 +501,7 @@ so we can't quite see your point about boilerplate removal. I think you should s
    ` => a: 2
 -->
 
-Default values are CUE's equivalant of inheritance,
+Default values are CUE's equivalent of inheritance,
 specifically the kind that allows instances to override any value of its parent.
 Without it, very little boilerplate removal would be possible.
 That is fine if CUE is used just for validation,
@@ -754,7 +754,7 @@ b: 1
 ```
 without resorting to any fancy algebraic constraint satisfaction solvers,
 just plain ol' logic.
-Most cycles that do not result in inifite structures can be handled by CUE.
+Most cycles that do not result in infinite structures can be handled by CUE.
 In fact, it could handle most infinite structures in bounded time
 as well, but it puts limits on such cycles for
 practical reasons.[$^3$](#footnotes)
@@ -812,7 +812,7 @@ One can read more about this in Ann Copestake's
    This is why CUE adds defaults.
 
 <li> Detection of structural cycles (an occurs check)
-   is not yet implemented, and thus printing inifinite structures
+   is not yet implemented, and thus printing infinite structures
    will still result in a loop.
 </ol>
 </small>
