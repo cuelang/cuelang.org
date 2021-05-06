@@ -36,17 +36,14 @@ Notes on the formalism underlying the specification can be found
 
 The CUE Go APIs in the main repo are organized as follows:
 
-- [**cmd**](https://godoc.org/cuelang.org/go/cmd):
+- [**cmd**](https://pkg.go.dev/cuelang.org/go/cmd):
   The CUE command line tool.
-- [**cue**](https://godoc.org/cuelang.org/go/cue):
+- [**cue**](https://pkg.go.dev/cuelang.org/go/cue):
   core APIs related to parsing, formatting, loading and running CUE programs.
   These packages are used by all other packages, including the command line tool.
-- [**doc**](https://godoc.org/cuelang.org/go/doc):
-  [CUE documentation](/docs/references),
-  including tutorials and the reference manual.
-- [**encoding**](https://godoc.org/cuelang.org/go/encoding):
+- [**encoding**](https://pkg.go.dev/cuelang.org/go/encoding):
   Packages for converting to and from CUE, including adaptors for YAML, JSON,
   Go, Protobuf, and OpenAPI.
-- [**pkg**](https://godoc.org/cuelang.org/go/pkg):
+- [**pkg**](https://pkg.go.dev/cuelang.org/go/pkg):
   Builtin packages that are available from within _CUE_ programs.
   These are typically not used in Go code.

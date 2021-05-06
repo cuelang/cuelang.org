@@ -21,9 +21,9 @@ based on a schema.
 There are not too many handy tools to verify plain data files.
 Often, validation is relied upon to be done server side.
 If it is done client side, it either relies on rather verbose schema
-definitions or using custom tools that verify schema for a specfic domain.
+definitions or using custom tools that verify schema for a specific domain.
 
-The `cue` command line tool provides a fairly straighforward way to
+The `cue` command line tool provides a fairly straightforward way to
 define schema and verify them against a collection of data files.
 
 Given these two files:
@@ -71,7 +71,7 @@ in the definitions, even before they are applied to a concrete case.
 
 CUE can be applied directly on the data in code using its API,
 but it can also be used to compute JSON schemas from CUE definitions.
-(See [cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/openapi).)
+(See [cuelang.org/go/encoding/openapi](https://pkg.go.dev/cuelang.org/go/encoding/openapi).)
 If a document-oriented database natively supports JSON schema it will likely
 have its benefits to do so.
 Using CUE to generate the schema has several advantages over doing so directly:

@@ -10,7 +10,7 @@ CUE heavily relies on its order independence for package organization.
 Definitions and constraints can be split across files within a package,
 and even organized across directories.
 
-Another key aspect of CUE's package management is reproduceability.
+Another key aspect of CUE's package management is reproducibility.
 A module, the largest unit of organization, has a fixed location
 of all files and dependencies.
 There are no paths to configure.
@@ -234,7 +234,7 @@ CUE has a collection of builtin packages that are compiled into the `.cue`
 binary.
 
 A list of these packages form
-can be found here https://godoc.org/cuelang.org/go/pkg.
+can be found here https://pkg.go.dev/cuelang.org/go/pkg.
 The intention is to have this documentation in CUE format, but for now
 we are piggybacking on the Go infrastructure to host and present the CUE
 packages.

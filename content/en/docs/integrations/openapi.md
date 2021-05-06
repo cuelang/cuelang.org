@@ -44,7 +44,7 @@ func genOpenAPI(inst *cue.Instance) ([]byte, error) {
 
 {{< /highlight >}}
 
-The [cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/openapi)
+The [cuelang.org/go/encoding/openapi](https://pkg.go.dev/cuelang.org/go/encoding/openapi)
 package provides options to make a definition self-contained,
 expand references, filtering constraints, and so on.
 

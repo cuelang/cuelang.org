@@ -220,7 +220,7 @@ CUE, in turn is influenced by Jsonnet.
 This may give the semblance that the languages are very similar.
 At the core, though, they are very different.
 
-CUE's focus is data validation whereas Jsonnet focusses on data templating
+CUE's focus is data validation whereas Jsonnet focuses on data templating
 (boilerplate removal).
 Jsonnet was not designed with validation in mind.
 
