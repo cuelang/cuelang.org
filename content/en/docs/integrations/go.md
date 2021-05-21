@@ -12,18 +12,15 @@ available to Go developers and interacts with CUE in various ways.
 
 The CUE APIs in the main repo are organized as follows:
 
-- [**cmd**](https://godoc.org/cuelang.org/go/cmd):
+- [**cmd**](https://pkg.go.dev/cuelang.org/go/cmd):
   The CUE command line tool.
-- [**cue**](https://godoc.org/cuelang.org/go/cue):
+- [**cue**](https://pkg.go.dev/cuelang.org/go/cue):
   core APIs related to parsing, formatting, loading and running CUE programs.
   These packages are used by all other packages, including the command line tool.
-- [**doc**](https://github.com/cuelang/cue/tree/master/doc):
-  [CUE documentation](/docs/references),
-  including tutorials and the reference manual.
-- [**encoding**](https://godoc.org/cuelang.org/go/encoding):
+- [**encoding**](https://pkg.go.dev/cuelang.org/go/encoding):
   Packages for converting to and from CUE, including adaptors for YAML, JSON,
   Go, Protobuf, and OpenAPI.
-- [**pkg**](https://godoc.org/cuelang.org/go/pkg):
+- [**pkg**](https://pkg.go.dev/cuelang.org/go/pkg):
   Builtin packages that are available from within _CUE_ programs.
   These are typically not used in Go code.
 
@@ -83,10 +80,10 @@ or
 There are two primary ways to load CUE into Go.
 To load entire packages, consistent with the `cue` tool,
 use the
-[`cuelang.org/go/cue/load`](https://godoc.org/cuelang.org/go/cue/load)
+[`cuelang.org/go/cue/load`](https://pkg.go.dev/cuelang.org/go/cue/load)
 package.
 To load CUE parse trees or raw CUE text, use a
-[`cuelang.org/go/cue.Runtime`](https://godoc.org/cuelang.org/go/cue#Runtime).
+[`cuelang.org/go/cue.Runtime`](https://pkg.go.dev/cuelang.org/go/cue#Runtime).
 
 {{< alert color="warning" title="Use a single Runtime">}}
 For any operation that involves two CUE values these two values must have
@@ -120,7 +117,7 @@ The names passed to Compile get recorded as references in token positions.
 ### Validate Go values
 
 The `Codec` type in package
-[`cuelang.org/go/encoding/gocode/gocodec`](https://godoc.org/cuelang.org/go/encoding/gocode/gocodec)
+[`cuelang.org/go/encoding/gocode/gocodec`](https://pkg.go.dev/cuelang.org/go/encoding/gocode/gocodec)
  provides the `Validate`
 method for validating Go values.
 
@@ -134,7 +131,7 @@ func (x *MyValue) Validate() error {
 {{< /highlight >}}
 
 Package
-[`cuelang.org/go/encoding/gocode`](https://godoc.org/cuelang.org/go/encoding/gocode),
+[`cuelang.org/go/encoding/gocode`](https://pkg.go.dev/cuelang.org/go/encoding/gocode),
 discussed below,
 can generate these kind of stubs to make life a bit easier.
 
@@ -182,7 +179,7 @@ fmt.Println(x)
 {{< /highlight >}}
 
 Package
-[`cuelang.com/go/encoding/gocode/gocodec`](https://godoc.org/cuelang.org/go/encoding/gocode/gocodec)
+[`cuelang.com/go/encoding/gocode/gocodec`](https://pkg.go.dev/cuelang.org/go/encoding/gocode/gocodec)
  gives a bit more control
 over encoding and allows incorporating Go field tags with constraints as
 well as deriving unspecified values from constraints.
@@ -213,9 +210,9 @@ modifications are only allowed at the whole-instance level.
 
 ### Programmatically
 
-The [`Generate`](https://godoc.org/cuelang.org/go/encoding/gocode#Generate)
+The [`Generate`](https://pkg.go.dev/cuelang.org/go/encoding/gocode#Generate)
 function in package
-[`cuelang.org/go/encoding/gocode`](https://godoc.org/cuelang.org/go/encoding/gocode)
+[`cuelang.org/go/encoding/gocode`](https://pkg.go.dev/cuelang.org/go/encoding/gocode)
 generates stubs for validation functions and method from a given CUE instance.
 It does so by lining up the top-level CUE names with Go definitions.
 The CUE code can use field tags, similar to those used in Go,

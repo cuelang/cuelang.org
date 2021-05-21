@@ -74,7 +74,7 @@ certainly not limited to these cases.
 The [Common Expression Language](https://github.com/google/cel-spec),
 or CEL, defines a simple expression language that can be used as a
 standardization of constraints.
-It focusses on simplicity, speed, termination guarantees and
+It focuses on simplicity, speed, termination guarantees and
 being able run embedded in applications.
 
 Unification of basic typed-feature structures has pseudo-linear run

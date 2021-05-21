@@ -105,7 +105,7 @@ message MyType {
 where the import
 [`cue/cue.proto`](https://cue.googlesource.com/cue/+/refs/heads/master/encoding/protobuf/cue/cue.proto)
 resides in
-[`cuelang.org/go/encoding/protobuf`](https://godoc.org/cuelang.org/go/encoding/protobuf),
+[`cuelang.org/go/encoding/protobuf`](https://pkg.go.dev/cuelang.org/go/encoding/protobuf),
 can be converted to CUE using the following Go code
 
 {{< highlight go >}}
@@ -149,7 +149,7 @@ that map to various different CUE packages within the same module
 importing each other and `.proto` files from other locations.
 This is where things can get hairy.
 
-Package [`cuelang.org/go/encoding/protobuf`](https://godoc.org/cuelang.org/go/encoding/protobuf)
+Package [`cuelang.org/go/encoding/protobuf`](https://pkg.go.dev/cuelang.org/go/encoding/protobuf)
 can be configured to deal with these situations.
 For `.proto` files that have a `go_package` directive, it will use this path.
 If it maps to a package within the CUE module will be generated within the

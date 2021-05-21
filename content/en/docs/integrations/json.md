@@ -20,7 +20,7 @@ with normal strings, as one cannot tell from the string itself
 if it is to be used as a template or a verbatim string.
 CUE's notation is _not_ valid JSON, meaning it is safe for CUE to give it
 special treatment outside of the JSON spec.
-This way 100% compatability is guaranteed.
+This way 100% compatibility is guaranteed.
 {{< /alert >}}
 
 
