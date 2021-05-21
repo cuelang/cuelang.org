@@ -13,7 +13,7 @@ One aspect of OpenAPI is to define data schema.
 CUE supports converting CUE values to such schema.
 As CUE is more expressive than OpenAPI, it is not possible to generate
 a fully accurate OpenAPI schema.
-But CUE makes a best effort to encode as must as possible.
+But CUE makes a best effort to encode as much as possible.
 
 
 ## Generate OpenAPI
@@ -21,7 +21,7 @@ But CUE makes a best effort to encode as must as possible.
 CUE currently only supports generating OpenAPI through its API.
 The Istio project has a
 [command line tool](https://github.com/istio/tools/tree/master/cmd/cue-gen)
-to generate OpenAPI build on this API.
+to generate OpenAPI, built upon this API.
 
 Generating an OpenAPI definition can be as simple as
 {{< highlight go >}}
@@ -33,8 +33,12 @@ func genOpenAPI(inst *cue.Instance) ([]byte, error) {
         return nil, err
     }
 
-    var out = &bytes.Buffer{}
-    _ = json.Indent(out, b, "", "   ")
+    var out bytes.Buffer
+    err = json.Indent(&out, b, "", "   ")
+    if err != nil {
+        return nil, err
+    }
+    
     return out.Bytes(), nil
 }
 
@@ -44,5 +48,5 @@ The [cuelang.org/go/encoding/openapi](https://godoc.org/cuelang.org/go/encoding/
 package provides options to make a definition self-contained,
 expand references, filtering constraints, and so on.
 
-If expanding references is selected it will ensure the output is
+If _expanding references_ is selected it will ensure the output is
 in the Structural OpenAPI form, which is required for CRDs 1.15.
