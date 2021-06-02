@@ -99,11 +99,10 @@ msg:   "Hello \(place)!"
 place: string | *"world" // "world" is the default.
 `
 
-var r cue.Runtime
+ctx := cuecontext.New()
 
-instance, _ := r.Compile("test", config)
-
-str, _ := instance.Lookup("msg").String()
+val := ctx.CompileString(config)
+str, _ := val.LookupPath(cue.ParsePath("msg")).String()
 
 fmt.Println(str)
 
@@ -159,23 +158,25 @@ The simplest way to set a Go value to the contents of a CUE value
 is to use the Decode method of the later.
 
 {{< highlight go >}}
-type ab struct { A, B int }
-
-var r cue.Runtime
+type ab struct{ A, B int }
 
 var x ab
-
-i, _ := r.Compile("test", `{A: 2, B: 4}`)
-_ = i.Value().Decode(&x)
+  
+ctx := cuecontext.New()
+  
+val := ctx.CompileString(`{A: 2, B: 4}`)
+val.Value().Decode(&x)
 fmt.Println(x)
-
-i, _ = r.Compile("test", `{B: "foo"}`)
-_ = i.Value().Decode(&x)
-fmt.Println(x)
-
+  
+val = ctx.CompileString(`{B: "foo"}`)
+err := val.Value().Decode(&x)
+if err != nil {
+	fmt.Println(err)
+}
+  
 // Output:
 // {2 4}
-// json: cannot unmarshal string into Go struct field ab.B of type int
+// B: cannot use value "foo" (type string) as int
 {{< /highlight >}}
 
 Package
