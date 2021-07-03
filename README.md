@@ -1,63 +1,17 @@
-### `github.com/cuelang/cuelang.org` - the home of cuelang.org
+<!--
+ Copyright 2018 The CUE Authors
 
-This repo is the home of [cuelang.org](https://cuelang.org). The site is built using [Hugo](https://gohugo.io/) and is
-based on the [docsy](https://www.docsy.dev/) theme.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-The [CUE Language Specification](https://cuelang.org/docs/references/spec/) and
-[tour](https://cuelang.org/docs/tutorials/tour/intro/) are generated from source files in the
-[`cuelang.org/go`](https://pkg.go.dev/mod/cuelang.org/go) module; the results are currently not committed to this
-repository.
+     http://www.apache.org/licenses/LICENSE-2.0
 
-The site is deployed and hosted via [Netlify](https://www.netlify.com/).
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
 
-### Requirements for local development
-
-* [NodeJS](https://nodejs.org/) `>= v12.14.1`
-* [Go](https://golang.org/dl/) (stable version)
-* [Hugo](https://github.com/gohugoio/hugo/releases) `== v0.67.0`
-
-### Developing the site locally
-
-```bash
-# Ensure you have the correct version of the docsy theme
-git submodule update -f --init --recursive
-
-# Install Hugo's Node requirements
-npm install
-
-# Generate the language spec and tour
-go generate ./...
-
-# Serve (with auto-reload)
-hugo serve -D
-```
-
-### Updating the language spec and tour for cuelang.org
-
-The tour and spec and generated against the required version of the `cuelang.org/go` module:
-
-```
-go generate ./...
-```
-
-Therefore to update the generated version you need to update the required version of `cuelang.org/go`:
-
-```
-go get cuelang.org/go@latest
-```
-
-### tip.cuelang.org
-
-[tip.cuelang.org](https://tip.cuelang.org/) has the exact same site template and content as
-[cuelang.org](https://cuelang.org) except for the fact the language spec and tour are generated based on
-`cuelang.org/go@master`. Any commit to `master` of this repository or
-[github.com/cuelang/cue](https://github.com/cuelang/cue) will result in a redeploy of
-[tip.cuelang.org](https://tip.cuelang.org).
-
-### History
-
-This site was setup using the following guides:
-
-* https://gohugo.io/hosting-and-deployment/hosting-on-netlify/
-* https://www.docsy.dev/docs/getting-started
-* https://www.docsy.dev/docs/deployment/
+# The home of cuelang.org has moved to https://github.com/cue-lang/cuelang.org
